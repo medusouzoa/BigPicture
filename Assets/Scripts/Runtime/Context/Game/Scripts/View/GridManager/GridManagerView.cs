@@ -11,7 +11,7 @@ namespace Runtime.Context.Game.Scripts.View.GridManager
 {
   public class GridManagerView: EventView
   {
-    public void CreateGrids(List<List<GridVo>> gridData, BundleFacade bundleFacade)
+    public void CreateGrids(List<List<TileGridVo>> gridData, BundleFacade bundleFacade)
     {
       List<Func<IPromise>> promises = new();
 
@@ -19,10 +19,10 @@ namespace Runtime.Context.Game.Scripts.View.GridManager
     
       for (int i = 0; i < gridData.Count; i++)
       {
-        List<GridVo> gridVos = gridData[i];
+        List<TileGridVo> gridVos = gridData[i];
         for (int j = 0; j < gridVos.Count; j++)
         {
-          GridVo gridVo = gridVos[j];
+          TileGridVo gridVo = gridVos[j];
           promises.Add(() => InstantiateGrid(bundleFacade, gridVo.x, gridVo.y));
         }
       }
@@ -36,7 +36,7 @@ namespace Runtime.Context.Game.Scripts.View.GridManager
 
     private IPromise InstantiateGrid(BundleFacade bundleFacade, int i, int j)
     {
-      return bundleFacade.InstantiateAndReturn("ItemSlot", transform)
+      return bundleFacade.InstantiateAndReturn("Tile", transform)
         .Then(result =>
         {
           result.transform.name = $"grid_{i}_{j}";

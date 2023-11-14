@@ -18,12 +18,17 @@ MonoBehaviour:
   m_GUID: 5c14d04cd9492bb4abcbb9b0c1dcb471
   m_SerializeEntries:
   - m_GUID: fa66116b075731849af785a018cbd1a2
-    m_Address: ItemSlot
+    m_Address: Tile
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 6bc39d729909e0342acdcd3670f65a91
-    m_Address: GamePanel
+  - m_GUID: f611ee350699df04e8cf2ef79b692a99
+    m_Address: WelcomePanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5f4b13d40ca2c243a60221bfff6c2e7
+    m_Address: InGameHud
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

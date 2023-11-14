@@ -13,7 +13,7 @@ namespace Runtime.Context.Game.Scripts.View.Game
 
     public override void OnRegister()
     {
-      gameModel.Setup();
+      gameModel.Setup(view.n);
     }
 
     public override void OnRemove()

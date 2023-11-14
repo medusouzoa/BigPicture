@@ -5,12 +5,14 @@ using Runtime.Context.Game.Scripts.Models.Grid;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
 using Runtime.Context.Game.Scripts.Models.Pathfinding;
+using Runtime.Context.Game.Scripts.View.Game;
 using Runtime.Context.Game.Scripts.View.GridManager;
 using Runtime.Context.Game.Scripts.View.GridTest;
 using Runtime.Context.Game.Scripts.View.Inventory;
 using Runtime.Context.Game.Scripts.View.Layer;
 using Runtime.Context.Game.Scripts.View.Tile;
 using Runtime.Context.Game.Scripts.View.TileManager;
+using Runtime.Context.Game.Scripts.View.Welcome;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
 using UnityEngine;
@@ -41,6 +43,8 @@ namespace Runtime.Context.Game.Scripts.Config
       mediationBinder.Bind<LayerView>().To<LayerMediator>();
       mediationBinder.Bind<TileManagerView>().To<TileManagerMediator>();
       mediationBinder.Bind<TileView>().To<TileMediator>();
+      mediationBinder.Bind<WelcomePanelView>().To<WelcomePanelMediator>();
+      mediationBinder.Bind<GamePanelView>().To<GamePanelMediator>();
 
       commandBinder.Bind(ContextEvent.START).To<InitGameCommand>();
     }

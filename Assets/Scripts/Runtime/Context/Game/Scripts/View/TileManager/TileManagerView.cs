@@ -36,10 +36,10 @@ namespace Runtime.Context.Game.Scripts.View.TileManager
 
     private IPromise InstantiateGrid(BundleFacade bundleFacade, int i, int j)
     {
-      return bundleFacade.InstantiateAndReturn("Grid", transform)
+      return bundleFacade.InstantiateAndReturn("Tile", transform)
         .Then(result =>
         {
-          result.transform.name = $"grid_{i}_{j}";
+          result.transform.name = $"tile_{i}_{j}";
 
           TileView gridView = result.GetComponent<TileView>();
           gridView.x = i;

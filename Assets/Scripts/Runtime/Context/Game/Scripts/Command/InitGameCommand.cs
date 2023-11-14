@@ -16,7 +16,7 @@ namespace Runtime.Context.Game.Scripts.Command
 
     public override void Execute()
     {
-      Transform parent = layerModel.GetLayer(Layers.Inventory);
+      Transform parent = layerModel.GetLayer(Layers.Hud);
       panelModel.LoadPanel("WelcomePanel", parent);
     }
   }

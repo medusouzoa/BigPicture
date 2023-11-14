@@ -4,9 +4,10 @@ using UnityEngine.UIElements;
 namespace Runtime.Context.Game.Scripts.Vo
 {
   [Serializable]
-  public class TileGridVo : GridVo
+  public class TileGridVo 
   {
-    public Image image;
-    public int count;
+    public int x;
+
+    public int y;
   }
 }

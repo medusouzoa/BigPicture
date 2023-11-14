@@ -5,9 +5,9 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
 {
   public interface IGameModel
   {
-    List<List<GridVo>> grids { get; }
+    List<List<TileGridVo>> grids { get; }
     
-    void Setup();
+    void Setup(int n);
 
     void StartGame();
     void OnPostConstruct();
