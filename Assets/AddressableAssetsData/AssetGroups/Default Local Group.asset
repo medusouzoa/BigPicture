@@ -17,7 +17,7 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 5c14d04cd9492bb4abcbb9b0c1dcb471
   m_SerializeEntries:
-  - m_GUID: fa66116b075731849af785a018cbd1a2
+  - m_GUID: 0d64cd153b912614da379d6b3a91168a
     m_Address: Tile
     m_ReadOnly: 0
     m_SerializedLabels: []
@@ -29,6 +29,36 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5f4b13d40ca2c243a60221bfff6c2e7
     m_Address: InGameHud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 42014ab2acf14cb4f9000e56afb4f00a
+    m_Address: MarketPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf9f1284db9c1e64fba74983878e055a
+    m_Address: SettingsPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62cabadf47d1e41418e567f73077d3ec
+    m_Address: CraftPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 93e2bddbd0042ca49aea724d5d3f8e3e
+    m_Address: InventoryPanel
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3603a1d28f45ba14bb3a2f486bb87c2d
+    m_Address: InventoryItem
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9078086eeeab72439a8d18bc71139f7
+    m_Address: CraftRow
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

@@ -17,5 +17,6 @@ namespace Runtime.Context.Game.Scripts.Models.Panel
         .Catch(exception => promise.Reject(exception));
       return promise;
     }
+    
   }
 }

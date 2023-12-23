@@ -30,8 +30,8 @@ namespace Runtime.Context.Game.Scripts.View.GridTest
 
       GridSettingsVo settingsVo = new()
       {
-        height = 10,
-        width = 10,
+        height = 20,
+        width = 20,
         cellSize = 10f,
         originPosition = Vector3.zero
       };

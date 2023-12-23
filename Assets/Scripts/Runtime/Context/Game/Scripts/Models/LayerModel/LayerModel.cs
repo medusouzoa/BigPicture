@@ -24,7 +24,7 @@ namespace Runtime.Context.Game.Scripts.Models.LayerModel
     {
       if (!_layers.ContainsKey(key)) //önce olumsuz koşulları yaz
       {
-        Debug.LogError(" Player not found in layer map" + key);
+      //  Debug.LogError(" Player not found in layer map" + key);
         return null;
       }
 

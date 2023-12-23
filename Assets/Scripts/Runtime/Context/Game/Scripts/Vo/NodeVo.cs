@@ -37,14 +37,12 @@ namespace Runtime.Context.Game.Scripts.Vo
     public List<NodeVo> neighbours;
 
     public NodeVo cameFromNode;
-
-    /**
-     *  Temporary value always false at the end
-     */
     public bool interactive { get; set; }
 
     public bool check;
 
+    public Transform transform;
+      
     public NodeVo()
     {
     }
@@ -67,10 +65,26 @@ namespace Runtime.Context.Game.Scripts.Vo
       return "x: " + x + " y: " + y + " z: " + z;
     }
 
+    public void SetTransform(Transform transformed)
+    {
+      this.transform = transformed;
+    }
+
+    public bool CanBuild()
+    {
+      return transform == null;
+    }
+
+    public void ClearTransform()
+    {
+      transform = null;
+    }
+
     public bool isWalkable
     {
       get { return _status; }
     }
+
     public void ResetStatus()
     {
       interactive = false;

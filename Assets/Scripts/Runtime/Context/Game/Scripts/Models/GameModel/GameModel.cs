@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 using Runtime.Context.Game.Scripts.Enum;
-using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.context.api;
 using strange.extensions.dispatcher.eventdispatcher.api;
-using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Models.GameModel
 {
@@ -13,20 +11,23 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
     [Inject(ContextKeys.CONTEXT_DISPATCHER)]
     public IEventDispatcher dispatcher { get; set; }
 
-    [SerializeField]
-    private UI_Inventory _uiInventory;
+
 
     public List<List<TileGridVo>> grids { get; private set; }
-    public Inventory inventory { get; set; }
     public int col { get; set; }
 
     [PostConstruct]
     public void OnPostConstruct()
     {
       grids = new List<List<TileGridVo>>();
-      inventory = new Inventory();
       //   _uiInventory.SetInventory(inventory);
+      /* ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item {itemType = Item.ItemType.Stone, amount = 1});
+       ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item {itemType = Item.ItemType.Stick, amount = 1});
+       ItemWorld.SpawnItemWorld(new Vector3(0, -20), new Item {itemType = Item.ItemType.Wrench, amount = 1});
+     */
     }
+
+    
 
     public void Setup(int n)
     {
