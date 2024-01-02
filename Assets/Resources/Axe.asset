@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredients:
   - item: {fileID: 11400000, guid: f337bc03b9b0b6e4498f150d2e8c3394, type: 2}
-    amount: 1
+    amount: 2
   - item: {fileID: 11400000, guid: bb7e25ff88547044cbf0cde302c96cd9, type: 2}
-    amount: 1
+    amount: 2
   result: {fileID: 11400000, guid: 6fc17ed7aba31ee4d91b0ca3949c2149, type: 2}
   prefab: {fileID: 5860865012310875023, guid: e9078086eeeab72439a8d18bc71139f7, type: 3}
