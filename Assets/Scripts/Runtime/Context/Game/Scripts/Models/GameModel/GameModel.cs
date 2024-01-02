@@ -12,7 +12,6 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
     public IEventDispatcher dispatcher { get; set; }
 
 
-
     public List<List<TileGridVo>> grids { get; private set; }
     public int col { get; set; }
 
@@ -20,14 +19,8 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
     public void OnPostConstruct()
     {
       grids = new List<List<TileGridVo>>();
-      //   _uiInventory.SetInventory(inventory);
-      /* ItemWorld.SpawnItemWorld(new Vector3(20, 20), new Item {itemType = Item.ItemType.Stone, amount = 1});
-       ItemWorld.SpawnItemWorld(new Vector3(-20, 20), new Item {itemType = Item.ItemType.Stick, amount = 1});
-       ItemWorld.SpawnItemWorld(new Vector3(0, -20), new Item {itemType = Item.ItemType.Wrench, amount = 1});
-     */
     }
 
-    
 
     public void Setup(int n)
     {

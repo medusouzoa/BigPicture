@@ -24,6 +24,9 @@ namespace Runtime.Context.Game.Scripts.View.GridTest
     [Inject]
     public IPathfindingService pathfindingService { get; set; }
 
+    public int startX ;
+    public int startY ;
+
     public override void OnRegister()
     {
       view.dispatcher.AddListener(GridTestEvent.Click, OnClick);
@@ -48,7 +51,7 @@ namespace Runtime.Context.Game.Scripts.View.GridTest
 
       if (nodeVo != null)
       {
-        List<NodeVo> path = pathfindingService.FindPath(0, 0, nodeVo.x, nodeVo.z);
+        List<NodeVo> path = pathfindingService.FindPath(startX, startY, nodeVo.x, nodeVo.z);
 
         if (path != null)
         {
@@ -58,6 +61,9 @@ namespace Runtime.Context.Game.Scripts.View.GridTest
             Debug.DrawLine(new Vector3(path[i].x, 0, path[i].z) * 10f + Vector3.one * 5f, new Vector3(path[i + 1].x, 0, path[i + 1].z) * 10f + Vector3.one * 5f, Color.green, 1f);
           }
         }
+
+        startX = nodeVo.x;
+        startY = nodeVo.z;
       }
     }
 

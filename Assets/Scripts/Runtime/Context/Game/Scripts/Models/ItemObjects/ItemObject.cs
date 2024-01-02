@@ -7,7 +7,10 @@ namespace Runtime.Context.Game.Scripts.Models.ItemObjects
     Default,
     Wrench,
     Stone,
-    Stick
+    Stick,
+    Axe,
+    Hammer,
+    Sword
   }
 
   public abstract class ItemObject : ScriptableObject

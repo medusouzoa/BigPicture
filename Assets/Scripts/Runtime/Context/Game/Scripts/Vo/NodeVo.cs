@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Runtime.Context.Game.Scripts.Models.Bundle;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -42,7 +43,8 @@ namespace Runtime.Context.Game.Scripts.Vo
     public bool check;
 
     public Transform transform;
-      
+    private PlacedObject _placedObject;
+
     public NodeVo()
     {
     }
@@ -65,9 +67,14 @@ namespace Runtime.Context.Game.Scripts.Vo
       return "x: " + x + " y: " + y + " z: " + z;
     }
 
-    public void SetTransform(Transform transformed)
+    public void SetPlacedObject(PlacedObject placedObject)
     {
-      this.transform = transformed;
+      this._placedObject = placedObject;
+    }
+
+    public PlacedObject GetPlacedObject()
+    {
+      return _placedObject;
     }
 
     public bool CanBuild()
@@ -75,9 +82,9 @@ namespace Runtime.Context.Game.Scripts.Vo
       return transform == null;
     }
 
-    public void ClearTransform()
+    public void ClearPlacedObject()
     {
-      transform = null;
+      _placedObject = null;
     }
 
     public bool isWalkable

@@ -1,5 +1,6 @@
 using Runtime.Context.Game.Scripts.Command;
 using Runtime.Context.Game.Scripts.Models.Bundle;
+using Runtime.Context.Game.Scripts.Models.CameraModel;
 using Runtime.Context.Game.Scripts.Models.CraftModel;
 using Runtime.Context.Game.Scripts.Models.Database;
 using Runtime.Context.Game.Scripts.Models.GameModel;
@@ -8,7 +9,6 @@ using Runtime.Context.Game.Scripts.Models.InventoryModel;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
 using Runtime.Context.Game.Scripts.Models.Pathfinding;
-using Runtime.Context.Game.Scripts.View.BuildingSystem;
 using Runtime.Context.Game.Scripts.View.Craft;
 using Runtime.Context.Game.Scripts.View.CraftRow;
 using Runtime.Context.Game.Scripts.View.GridManager;
@@ -16,9 +16,9 @@ using Runtime.Context.Game.Scripts.View.GridTest;
 using Runtime.Context.Game.Scripts.View.Inventory;
 using Runtime.Context.Game.Scripts.View.Layer;
 using Runtime.Context.Game.Scripts.View.MainHud;
+using Runtime.Context.Game.Scripts.View.Market;
 using Runtime.Context.Game.Scripts.View.Player;
-using Runtime.Context.Game.Scripts.View.Tile;
-using Runtime.Context.Game.Scripts.View.TileManager;
+using Runtime.Context.Game.Scripts.View.SceneCameras;
 using Runtime.Context.Game.Scripts.View.Welcome;
 using strange.extensions.context.api;
 using strange.extensions.context.impl;
@@ -44,6 +44,7 @@ namespace Runtime.Context.Game.Scripts.Config
       injectionBinder.Bind<IDatabaseModel>().To<DatabaseModel>().ToSingleton();
       injectionBinder.Bind<IInventoryModel>().To<InventoryModel>().ToSingleton();
       injectionBinder.Bind<ICraftModel>().To<CraftModel>().ToSingleton();
+      injectionBinder.Bind<ICameraModel>().To<CameraModel>().ToSingleton();
 
       injectionBinder.Bind<BundleFacade>().To<BundleFacade>().ToSingleton();
 
@@ -51,14 +52,13 @@ namespace Runtime.Context.Game.Scripts.Config
       mediationBinder.Bind<GridTestView>().To<GridTestMediator>();
       mediationBinder.Bind<InventoryView>().To<InventoryMediator>();
       mediationBinder.Bind<LayerView>().To<LayerMediator>();
-      mediationBinder.Bind<TileManagerView>().To<TileManagerMediator>();
-      mediationBinder.Bind<TileView>().To<TileMediator>();
       mediationBinder.Bind<WelcomePanelView>().To<WelcomePanelMediator>();
       mediationBinder.Bind<MainHudView>().To<MainHudMediator>();
       mediationBinder.Bind<CraftView>().To<CraftMediator>();
       mediationBinder.Bind<CraftRowView>().To<CraftRowMediator>();
       mediationBinder.Bind<PlayerView>().To<PlayerMediator>();
-      mediationBinder.Bind<BuildingView>().To<BuildingMediator>();
+      mediationBinder.Bind<MarketView>().To<MarketMediator>();
+      mediationBinder.Bind<CameraView>().To<CameraMediator>();
 
       commandBinder.Bind(ContextEvent.START).To<InitGameCommand>();
     }

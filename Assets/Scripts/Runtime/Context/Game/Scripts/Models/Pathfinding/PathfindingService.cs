@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.Grid;
 using Runtime.Context.Game.Scripts.Vo;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Models.Pathfinding
@@ -80,59 +78,6 @@ namespace Runtime.Context.Game.Scripts.Models.Pathfinding
 
       return null;
     }
-/*
-    private List<NodeVo> RetracePath(NodeVo startRoomNode, NodeVo endRoomNode)
-    {
-      //Retrace the path, is basically going from the endNode to the startNode
-      List<NodeVo> path = new();
-      NodeVo currentNode = endRoomNode;
-
-      int limit = 0;
-      while (currentNode != startRoomNode)
-      {
-        if (path.Contains(currentNode)) return new List<NodeVo>();
-
-        limit++;
-        if (limit > 500) return new List<NodeVo>();
-
-        path.Add(currentNode);
-
-        //by taking the parentNodes we assigned
-        currentNode = currentNode.cameFromNode;
-      }
-
-      while (currentNode != startRoomNode)
-      {
-        path.Add(currentNode);
-        //by taking the parentNodes we assigned
-        currentNode = currentNode.cameFromNode;
-      }
-
-      //then we simply reverse the list
-      path.Reverse();
-
-      return path;
-    }
-
-    private int GetDistance(NodeVo posA, NodeVo posB)
-    {
-      //We find the distance between each node
-      //not much to explain here
-
-      int distX = Mathf.Abs(posA.x - posB.x);
-      int distZ = Mathf.Abs(posA.z - posB.z);
-//      int distY = Mathf.Abs(posA.y - posB.y);
-
-//      if (distX > distZ)
-//      {
-//        return 14 * distZ + 10 * (distX - distZ) + 10 * distY;
-//      }
-//
-//      return 14 * distX + 10 * (distZ - distX) + 10 * distY;
-
-      return distX * 10 + distZ * 10;
-    }*/
-
 
     private NodeVo GetLowestFCostNode(List<NodeVo> pathNodeList)
     {

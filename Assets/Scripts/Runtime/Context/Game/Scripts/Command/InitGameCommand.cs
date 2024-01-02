@@ -24,7 +24,6 @@ namespace Runtime.Context.Game.Scripts.Command
       Transform parent = layerModel.GetLayer(Layers.Hud);
       panelModel.LoadPanel("WelcomePanel", parent);
       inventoryModel.InitializeDatabase();
-     // inventoryModel.AddItemToInventory("Wrench");
     }
   }
 }

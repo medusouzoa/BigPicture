@@ -41,10 +41,11 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
     public void InitializeDatabase()
     {
       itemDictionary = new Dictionary<string, ItemObject>();
-      WrenchObject wrenchObject = Resources.Load<WrenchObject>("Wrench");
       StoneObject stoneObject = Resources.Load<StoneObject>("Stone");
-      AddItemToDatabase(wrenchObject);
+      SwordObject swordObject = Resources.Load<SwordObject>("Sword");
+      AxeObject axeObject=Resources.Load<AxeObject>("Axe");
       AddItemToDatabase(stoneObject);
+      AddItemToDatabase(swordObject);
     }
 
     // Add an item to the database

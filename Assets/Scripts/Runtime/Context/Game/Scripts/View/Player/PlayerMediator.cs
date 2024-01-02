@@ -5,6 +5,7 @@ using Runtime.Context.Game.Scripts.Models.Pathfinding;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.mediation.impl;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Runtime.Context.Game.Scripts.View.Player
 {
@@ -25,11 +26,14 @@ namespace Runtime.Context.Game.Scripts.View.Player
     public IPathfindingService pathfindingService { get; set; }
 
     public float moveSpeed = 20f;
+    public int startX;
+    public int startY;
+    private bool _isMoving;
 
     public override void OnRegister()
     {
       view.dispatcher.AddListener(PlayerGridEvent.Click, OnClick);
-
+      _isMoving = false;
       GridSettingsVo settingsVo = new()
       {
         height = 20,
@@ -37,7 +41,8 @@ namespace Runtime.Context.Game.Scripts.View.Player
         cellSize = 10f,
         originPosition = Vector3.zero
       };
-
+      startX = 0;
+      startY = 0;
       gridModel.Create(settingsVo);
     }
 
@@ -50,7 +55,17 @@ namespace Runtime.Context.Game.Scripts.View.Player
 
       if (nodeVo != null)
       {
-        List<NodeVo> path = pathfindingService.FindPath(0, 0, nodeVo.x, nodeVo.z);
+        if (_isMoving)
+        {
+          // If the player is currently moving, stop the movement immediately
+          StopAllCoroutines();
+          _isMoving = false;
+        }
+
+        startX = nodeVo.x; // Update the starting X coordinate
+        startY = nodeVo.z; // Update the starting Y coordinate
+
+        List<NodeVo> path = pathfindingService.FindPath(startX, startY, nodeVo.x, nodeVo.z);
 
         if (path != null)
         {
@@ -66,6 +81,8 @@ namespace Runtime.Context.Game.Scripts.View.Player
 
     private IEnumerator MovePlayerAlongPath(List<NodeVo> path)
     {
+      _isMoving = true; // Set the flag to indicate that the player is moving
+
       foreach (NodeVo node in path)
       {
         Vector3 targetPosition = new Vector3(node.x * 10f + 5f, 0, node.z * 10f + 5f); // Adjust based on your grid settings
@@ -76,6 +93,8 @@ namespace Runtime.Context.Game.Scripts.View.Player
           yield return null;
         }
       }
+
+      _isMoving = false; // Reset the flag after the movement is complete
     }
 
     public override void OnRemove()
