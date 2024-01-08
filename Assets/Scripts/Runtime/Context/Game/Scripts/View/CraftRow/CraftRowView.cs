@@ -1,4 +1,5 @@
-﻿using Runtime.Context.Game.Scripts.Models.InventoryObject;
+﻿using System;
+using Runtime.Context.Game.Scripts.Models.InventoryObject;
 using strange.extensions.mediation.impl;
 
 namespace Runtime.Context.Game.Scripts.View.CraftRow
@@ -8,29 +9,23 @@ namespace Runtime.Context.Game.Scripts.View.CraftRow
     public InventoryObject inventory;
     public CraftBookObject.CraftBookObject craftBook;
 
+    public Action OnCraftItem1Action;
+    public Action OnCraftItem2Action;
+    public Action OnCraftItem3Action;
+
     public void OnCraftItem1()
     {
-      dispatcher.Dispatch(CraftRowEvent.FirstCraft);
+      OnCraftItem1Action?.Invoke();
     }
 
     public void OnCraftItem2()
     {
-      dispatcher.Dispatch(CraftRowEvent.SecondCraft);
+      OnCraftItem2Action?.Invoke();
     }
 
     public void OnCraftItem3()
     {
-      dispatcher.Dispatch(CraftRowEvent.ThirdCraft);
-    }
-
-    public void OnCraftItem4()
-    {
-      dispatcher.Dispatch(CraftRowEvent.FourthCraft);
-    }
-
-    public void OnCraftItem5()
-    {
-      dispatcher.Dispatch(CraftRowEvent.FifthCraft);
+      OnCraftItem3Action?.Invoke();
     }
   }
 }

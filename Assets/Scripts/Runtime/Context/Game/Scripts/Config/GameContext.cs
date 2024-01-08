@@ -9,6 +9,7 @@ using Runtime.Context.Game.Scripts.Models.InventoryModel;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
 using Runtime.Context.Game.Scripts.Models.Pathfinding;
+using Runtime.Context.Game.Scripts.View.Chromozombie;
 using Runtime.Context.Game.Scripts.View.Craft;
 using Runtime.Context.Game.Scripts.View.CraftRow;
 using Runtime.Context.Game.Scripts.View.GridManager;
@@ -59,6 +60,7 @@ namespace Runtime.Context.Game.Scripts.Config
       mediationBinder.Bind<PlayerView>().To<PlayerMediator>();
       mediationBinder.Bind<MarketView>().To<MarketMediator>();
       mediationBinder.Bind<CameraView>().To<CameraMediator>();
+      mediationBinder.Bind<ChromozombieView>().To<ChromozombieMediator>();
 
       commandBinder.Bind(ContextEvent.START).To<InitGameCommand>();
     }

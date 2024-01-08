@@ -1,7 +1,10 @@
-﻿using strange.extensions.mediation.impl;
+﻿using Runtime.Context.Game.Scripts.Models.Bundle;
+using Runtime.Context.Game.Scripts.Models.InventoryModel;
+using Runtime.Context.Game.Scripts.Models.ItemObjects;
+using strange.extensions.mediation.impl;
 using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
 namespace Runtime.Context.Game.Scripts.View.Craft
 {
   public enum CraftEvent
@@ -15,6 +18,8 @@ namespace Runtime.Context.Game.Scripts.View.Craft
     [Inject]
     public CraftView view { get; set; }
 
+    [Inject]
+    public IInventoryModel inventoryModel { get; set; }
     public override void OnRegister()
     {
       view.dispatcher.AddListener(CraftEvent.Close, OnClose);
@@ -32,11 +37,14 @@ namespace Runtime.Context.Game.Scripts.View.Craft
         return;
       }
 
-      // InstantiateCraft1(parent);
       for (int i = 0; i < view.craftBook.recipes.Count; i++)
       {
         GameObject obj = Instantiate(view.craftBook.recipes[i].prefab, parent.transform);
-
+        TextMeshProUGUI headerText = obj.transform.Find("ItemName")?.GetComponent<TextMeshProUGUI>();
+        headerText.text = view.craftBook.recipes[i].recipeName.ToString();
+        int recipeIndex = i;
+        Button craftButton = obj.GetComponentInChildren<Button>();
+        craftButton.onClick.AddListener(() => OnCraftItem(recipeIndex));
         for (int j = 0; j < view.craftBook.recipes[i].ingredients.Count; j++)
         {
           string itemName = "Item" + (j + 1);
@@ -68,29 +76,30 @@ namespace Runtime.Context.Game.Scripts.View.Craft
         }
       }
     }
-
-    /* public void InstantiateCraft1(GameObject parent)
-     {
-       GameObject obj = Instantiate(view.craftBook.recipes[0].prefab, parent.transform);
-       for (int j = 0; j < view.craftBook.recipes[0].ingredients.Count; j++)
-       {
-         string itemName = "Item" + (j + 1);
-         Transform itemTransform = obj.transform.Find(itemName);
-
-         if (itemTransform != null)
-         {
-           GameObject newItemPrefab = view.craftBook.recipes[0].ingredients[j].item.prefab;
-           newItemPrefab.GetComponentInChildren<TextMeshProUGUI>().text = view.craftBook.recipes[0].ingredients[j].amount.ToString("n0");
-
-           Instantiate(newItemPrefab, itemTransform.position, itemTransform.rotation, itemTransform);
-         }
-         else
-         {
-           Debug.LogError($"The '{itemName}' GameObject was not found in the instantiated prefab hierarchy.");
-         }
-       }
-     }*/
-
+    private void OnCraftItem(int index)
+    {
+      if (view.inventory.ContainsEnoughItem(view.craftBook.recipes[index].ingredients[0].item,
+            view.craftBook.recipes[index].ingredients[0].amount)
+          && view.inventory.ContainsEnoughItem(view.craftBook.recipes[index].ingredients[1].item,
+            view.craftBook.recipes[index].ingredients[1].amount))
+      {
+        Debug.Log("There are items to craft");
+        CraftingNewItem(index);
+        Debug.Log(view.craftBook.recipes[index].recipeName);
+        StartCoroutine(web.SaveItem(view.craftBook.recipes[index].recipeName, 1));
+        ItemObject newItem= inventoryModel.GetItemByName(view.craftBook.recipes[index].recipeName);
+        view.inventory.AddItem(newItem, 1);
+      }
+      else
+      {
+        Debug.Log("There are missing objects to craft");
+      }
+    }
+    public void CraftingNewItem(int i)
+    {
+      view.inventory.RemoveItem(view.craftBook.recipes[i].ingredients[0].item, view.craftBook.recipes[i].ingredients[0].amount);
+      view.inventory.RemoveItem(view.craftBook.recipes[i].ingredients[1].item, view.craftBook.recipes[i].ingredients[1].amount);
+    }
     private void OnClose()
     {
       Destroy(gameObject);

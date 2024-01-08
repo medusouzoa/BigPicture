@@ -10,6 +10,7 @@ namespace Runtime.Context.Game.Scripts.CraftBookObject
     public List<IngredientSlot> ingredients = new List<IngredientSlot>();
     public ItemObject result;
     public GameObject prefab;
+    public string recipeName;
   }
 
   [System.Serializable]

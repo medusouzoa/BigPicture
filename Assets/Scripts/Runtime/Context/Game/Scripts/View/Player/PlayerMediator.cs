@@ -5,7 +5,6 @@ using Runtime.Context.Game.Scripts.Models.Pathfinding;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.mediation.impl;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace Runtime.Context.Game.Scripts.View.Player
 {
@@ -29,6 +28,7 @@ namespace Runtime.Context.Game.Scripts.View.Player
     public int startX;
     public int startY;
     private bool _isMoving;
+    private Transform _target;
 
     public override void OnRegister()
     {
@@ -46,6 +46,7 @@ namespace Runtime.Context.Game.Scripts.View.Player
       gridModel.Create(settingsVo);
     }
 
+
     private void OnClick()
     {
       Vector3 mousePosition = Input.mousePosition;
@@ -57,13 +58,12 @@ namespace Runtime.Context.Game.Scripts.View.Player
       {
         if (_isMoving)
         {
-          // If the player is currently moving, stop the movement immediately
           StopAllCoroutines();
           _isMoving = false;
         }
 
-        startX = nodeVo.x; // Update the starting X coordinate
-        startY = nodeVo.z; // Update the starting Y coordinate
+        startX = nodeVo.x;
+        startY = nodeVo.z;
 
         List<NodeVo> path = pathfindingService.FindPath(startX, startY, nodeVo.x, nodeVo.z);
 
@@ -81,11 +81,11 @@ namespace Runtime.Context.Game.Scripts.View.Player
 
     private IEnumerator MovePlayerAlongPath(List<NodeVo> path)
     {
-      _isMoving = true; // Set the flag to indicate that the player is moving
+      _isMoving = true;
 
       foreach (NodeVo node in path)
       {
-        Vector3 targetPosition = new Vector3(node.x * 10f + 5f, 0, node.z * 10f + 5f); // Adjust based on your grid settings
+        Vector3 targetPosition = new Vector3(node.x * 10f + 5f, 0, node.z * 10f + 5f);
 
         while (Vector3.Distance(view.transform.position, targetPosition) > 0.1f)
         {
@@ -94,12 +94,17 @@ namespace Runtime.Context.Game.Scripts.View.Player
         }
       }
 
-      _isMoving = false; // Reset the flag after the movement is complete
+      _isMoving = false;
     }
 
     public override void OnRemove()
     {
       view.dispatcher.RemoveListener(PlayerGridEvent.Click, OnClick);
+    }
+
+    private void OnApplicationQuit()
+    {
+      view.inventory.container.Clear();
     }
   }
 }

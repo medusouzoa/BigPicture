@@ -1,4 +1,5 @@
-﻿using strange.extensions.mediation.impl;
+﻿using Runtime.Context.Game.Scripts.Models.InventoryObject;
+using strange.extensions.mediation.impl;
 using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.View.Player
@@ -6,7 +7,7 @@ namespace Runtime.Context.Game.Scripts.View.Player
   public class PlayerView : EventView
   {
     public Camera cam;
-
+    public InventoryObject inventory;
     private void Update()
     {
       if (Input.GetMouseButtonDown(0))

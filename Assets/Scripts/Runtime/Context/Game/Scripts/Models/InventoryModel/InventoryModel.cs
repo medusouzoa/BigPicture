@@ -41,10 +41,15 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
     public void InitializeDatabase()
     {
       itemDictionary = new Dictionary<string, ItemObject>();
+      StickObject stickObject = Resources.Load<StickObject>("Stick");
       StoneObject stoneObject = Resources.Load<StoneObject>("Stone");
+      AxeObject axeObject = Resources.Load<AxeObject>("Axe");
+      HammerObject hammerObject = Resources.Load<HammerObject>("Hammer");
       SwordObject swordObject = Resources.Load<SwordObject>("Sword");
-      AxeObject axeObject=Resources.Load<AxeObject>("Axe");
+      AddItemToDatabase(stickObject);
       AddItemToDatabase(stoneObject);
+      AddItemToDatabase(axeObject);
+      AddItemToDatabase(hammerObject);
       AddItemToDatabase(swordObject);
     }
 
