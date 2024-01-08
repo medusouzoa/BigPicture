@@ -6,7 +6,7 @@ namespace Runtime.Context.Game.Scripts.View.Player
 {
   public class PlayerView : EventView
   {
-    public Camera cam;
+    
     public InventoryObject inventory;
     private void Update()
     {

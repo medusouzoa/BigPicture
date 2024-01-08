@@ -65,7 +65,10 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
       _anim.SetTrigger("Attack");
       _stats.DealDamage(playerStats);
     }
-
+    public void SetTarget(Transform newTarget)
+    {
+      target = newTarget;
+    }
     private void GetReferences()
     {
       _agent = GetComponent<NavMeshAgent>();

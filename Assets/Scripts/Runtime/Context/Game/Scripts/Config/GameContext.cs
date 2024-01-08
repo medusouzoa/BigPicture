@@ -1,7 +1,6 @@
 using Runtime.Context.Game.Scripts.Command;
 using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.CameraModel;
-using Runtime.Context.Game.Scripts.Models.CraftModel;
 using Runtime.Context.Game.Scripts.Models.Database;
 using Runtime.Context.Game.Scripts.Models.GameModel;
 using Runtime.Context.Game.Scripts.Models.Grid;
@@ -44,7 +43,6 @@ namespace Runtime.Context.Game.Scripts.Config
       injectionBinder.Bind<IPanelModel>().To<PanelModel>().ToSingleton();
       injectionBinder.Bind<IDatabaseModel>().To<DatabaseModel>().ToSingleton();
       injectionBinder.Bind<IInventoryModel>().To<InventoryModel>().ToSingleton();
-      injectionBinder.Bind<ICraftModel>().To<CraftModel>().ToSingleton();
       injectionBinder.Bind<ICameraModel>().To<CameraModel>().ToSingleton();
 
       injectionBinder.Bind<BundleFacade>().To<BundleFacade>().ToSingleton();

@@ -16,3 +16,4 @@ MonoBehaviour:
   type: 6
   itemName: Sword
   description: Sword
+  isWeapon: 1

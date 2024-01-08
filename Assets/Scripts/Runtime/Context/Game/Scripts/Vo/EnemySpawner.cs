@@ -36,6 +36,8 @@ namespace Runtime.Context.Game.Scripts.Vo
     [SerializeField]
     private GameObject zombie;
 
+    private Transform target;
+
 
     private void Start()
     {
@@ -89,6 +91,7 @@ namespace Runtime.Context.Game.Scripts.Vo
 
       GameObject newEnemy = Instantiate(zombie, randomSpawner.position, randomSpawner.rotation);
       ZombieStats newEnemyStats = newEnemy.GetComponent<ZombieStats>();
+      // newEnemyStats.SetTarget(target);
       enemyList.Add(newEnemyStats);
       Debug.Log(randomInt);
     }

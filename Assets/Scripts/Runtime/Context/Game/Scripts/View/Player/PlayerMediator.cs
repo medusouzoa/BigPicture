@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Runtime.Context.Game.Scripts.Models.CameraModel;
 using Runtime.Context.Game.Scripts.Models.Grid;
 using Runtime.Context.Game.Scripts.Models.Pathfinding;
 using Runtime.Context.Game.Scripts.Vo;
@@ -22,6 +23,9 @@ namespace Runtime.Context.Game.Scripts.View.Player
     public IGridModel gridModel { get; set; }
 
     [Inject]
+    public ICameraModel cameraModel { get; set; }
+
+    [Inject]
     public IPathfindingService pathfindingService { get; set; }
 
     public float moveSpeed = 20f;
@@ -29,9 +33,11 @@ namespace Runtime.Context.Game.Scripts.View.Player
     public int startY;
     private bool _isMoving;
     private Transform _target;
+    public Camera cam;
 
     public override void OnRegister()
     {
+      cam = cameraModel.GetCameraByKey("1");
       view.dispatcher.AddListener(PlayerGridEvent.Click, OnClick);
       _isMoving = false;
       GridSettingsVo settingsVo = new()
@@ -50,7 +56,7 @@ namespace Runtime.Context.Game.Scripts.View.Player
     private void OnClick()
     {
       Vector3 mousePosition = Input.mousePosition;
-      Vector3 worldPoint = view.cam.ScreenToWorldPoint(mousePosition);
+      Vector3 worldPoint = cam.ScreenToWorldPoint(mousePosition);
       NodeVo nodeVo = gridModel.GetNodeByWorldPosition(worldPoint);
       Debug.LogError(nodeVo == null ? "Node is null" : nodeVo.ToString());
 

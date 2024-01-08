@@ -16,3 +16,4 @@ MonoBehaviour:
   type: 5
   itemName: Hammer
   description: Hammer
+  isWeapon: 1

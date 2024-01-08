@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using Runtime.Context.Game.Scripts.Models.InventoryObject;
+using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using UnityEngine;
+using UnityEngine.AI;
+using Random = System.Random;
 
 namespace Runtime.Context.Game.Scripts.Vo
 {
@@ -8,6 +13,17 @@ namespace Runtime.Context.Game.Scripts.Vo
     public int health;
     public int maxHealth;
     public bool isDead;
+    private NavMeshAgent _agent;
+    private Animator _anim;
+    private ZombieStats _stats;
+    public bool hasReached = false;
+    private Transform _target;
+    public InventoryObject inventory;
+    public float timeOfLastAttack = 0;
+    private List<ItemObject> _items;
+
+    [SerializeField]
+    private float stoppingDistance;
 
     [SerializeField]
     private int damage;
@@ -18,12 +34,13 @@ namespace Runtime.Context.Game.Scripts.Vo
     // private bool canAttack;
     private void Update()
     {
-     
+      //  MoveToTarget();
     }
 
     private void Start()
     {
       InitVariables();
+      GetReferences();
     }
 
     public void DealDamage(PlayerStats playerStats)
@@ -37,12 +54,25 @@ namespace Runtime.Context.Game.Scripts.Vo
       {
         health = 0;
         Die();
+        AddItems();
       }
 
       if (health >= maxHealth)
       {
         health = maxHealth;
       }
+    }
+
+    private void AddItems()
+    {
+      StickObject stickObject = Resources.Load<StickObject>("Stick");
+      StoneObject stoneObject = Resources.Load<StoneObject>("Stone");
+      _items.Add(stickObject);
+      _items.Add(stoneObject);
+      int randomIndex = new Random().Next(_items.Count);
+      int amount = UnityEngine.Random.Range(0, 9);
+      inventory.AddItem(_items[randomIndex],amount);
+      Debug.Log("Items added: "+ _items[randomIndex].itemName+" amount: "+ amount);
     }
 
     private void Die()
@@ -75,9 +105,60 @@ namespace Runtime.Context.Game.Scripts.Vo
       maxHealth = 25;
       SetHealth(maxHealth);
       isDead = false;
-      damage = 10;
+      damage = 1;
       attackSpeed = 1.5f;
-     // canAttack = true;
+      // canAttack = true;
+    }
+
+    private void MoveToTarget()
+    {
+      _agent.SetDestination(_target.position);
+      _anim.SetFloat("Speed", 1f, 0.3f, Time.deltaTime);
+      float distanceToTarget = Vector3.Distance(transform.position, _target.position);
+      _anim.SetFloat("Speed", 0f);
+      //Attack
+      if (distanceToTarget <= _agent.stoppingDistance)
+      {
+        if (!hasReached)
+        {
+          hasReached = true;
+          timeOfLastAttack = Time.time;
+        }
+
+
+        if (Time.time >= timeOfLastAttack + _stats.attackSpeed)
+        {
+          timeOfLastAttack = Time.time;
+          PlayerStats playerStats = _target.GetComponent<PlayerStats>();
+          AttackTarget(playerStats);
+        }
+      }
+      else
+      {
+        if (hasReached)
+        {
+          hasReached = false;
+        }
+      }
+    }
+
+    private void AttackTarget(PlayerStats playerStats)
+    {
+      _anim.SetTrigger("Attack");
+      _stats.DealDamage(playerStats);
+    }
+
+    public void SetTarget(Transform newTarget)
+    {
+      _target = newTarget;
+    }
+
+    private void GetReferences()
+    {
+      _agent = GetComponent<NavMeshAgent>();
+      _anim = GetComponentInChildren<Animator>();
+      _stats = GetComponent<ZombieStats>();
+      _items = new List<ItemObject>();
     }
   }
 }

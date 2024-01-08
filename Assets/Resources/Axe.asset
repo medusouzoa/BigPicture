@@ -16,3 +16,4 @@ MonoBehaviour:
   type: 4
   itemName: Axe
   description: 
+  isWeapon: 1

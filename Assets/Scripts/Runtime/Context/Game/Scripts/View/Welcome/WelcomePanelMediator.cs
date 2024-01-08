@@ -8,6 +8,7 @@ using Runtime.Context.Game.Scripts.Models.InventoryModel;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
+using Runtime.Context.Game.Scripts.Vo;
 using Runtime.Context.Game.Scripts.Vo.SimpleJSON;
 using strange.extensions.mediation.impl;
 using UnityEngine;
@@ -82,13 +83,17 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
     private void OnCheckAllDone()
     {
-      
       Transform parent = layerModel.GetLayer(Layers.InGameLayer);
       Destroy(gameObject);
 
       parent = layerModel.GetLayer(Layers.Hud);
       panelModel.LoadPanel(GamePanels.InGameHud, parent)
         .Then(() => { gameModel.StartGame(); });
+      Vector3 spawnPosition = new Vector3(88, 0, 80);
+
+      // Instantiate the player at the specified position with the default rotation
+      GameObject playerInstance = Instantiate(view.player, spawnPosition, Quaternion.identity);
+      GameObject spawner = Instantiate(view.spawner, Vector3.zero, Quaternion.identity);
     }
   }
 }
