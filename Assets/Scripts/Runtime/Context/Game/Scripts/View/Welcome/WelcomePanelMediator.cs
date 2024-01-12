@@ -42,6 +42,8 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
     public Transform player;
     public PlayerStats pStats;
     public EnemySpawner eSpawner;
+    public Transform house;
+    public HouseStats hStats;
 
     public override void OnRegister()
     {
@@ -49,11 +51,15 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       view.dispatcher.AddListener(WelcomePanelEvent.Start, OnCheckAllDone);
       StartCallback();
       Vector3 spawnPosition = new Vector3(88, 0, 80);
+      Vector3 spawnHousePosition = new Vector3(100, 0, 114);
       GameObject playerInstance = Instantiate(view.player, spawnPosition, Quaternion.identity);
+      GameObject houseInstance = Instantiate(view.house, spawnHousePosition, Quaternion.identity);
+      HouseStats houseStats = houseInstance.GetComponent<HouseStats>();
+      hStats = houseStats;
+      house = houseInstance.transform;
       PlayerStats playerStats = playerInstance.GetComponent<PlayerStats>();
       pStats = playerStats;
       player = playerInstance.transform;
-      StartCoroutine(web.GetItemAmountByName("Stick"));
     }
 
     private void Update()
@@ -65,7 +71,7 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
     {
       if (pStats.isDead)
       {
-        Destroy(eSpawner);
+        Destroy(view.spawner);
       }
     }
 
@@ -119,7 +125,7 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       EnemySpawner enemySpawner = spawner.GetComponent<EnemySpawner>();
       eSpawner = enemySpawner;
       enemySpawner.SetTargetSpawner(player);
-      enemySpawner.SetHouseTargetSpawner(view.house.transform);
+      enemySpawner.SetHouseTargetSpawner(house);
       Debug.Log("spawner transform set");
     }
   }

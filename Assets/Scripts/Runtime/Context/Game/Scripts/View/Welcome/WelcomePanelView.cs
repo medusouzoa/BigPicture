@@ -9,6 +9,7 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
     public InventoryObject inventory;
     public GameObject player;
     public GameObject spawner;
+    public GameObject houseSpawner;
 
     [SerializeField]
     public GameObject house;

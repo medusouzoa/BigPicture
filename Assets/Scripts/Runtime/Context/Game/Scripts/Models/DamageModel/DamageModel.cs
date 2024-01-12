@@ -2,9 +2,9 @@
 
 namespace Runtime.Context.Game.Scripts.Models.DamageModel
 {
-  public class DamageModel: IDamageModel
+  public class DamageModel : IDamageModel
   {
     public int damage { get; set; }
-    public   ZombieStats zombie { get; set; }
+    public ZombieStats zombie { get; set; }
   }
 }

@@ -38,6 +38,7 @@ namespace Runtime.Context.Game.Scripts.Vo
 
     private Transform _playerTarget;
     private Transform _houseTarget;
+    private Transform _target;
 
 
     private void Start()
@@ -70,8 +71,17 @@ namespace Runtime.Context.Game.Scripts.Vo
       {
         waveCountdown -= Time.deltaTime;
       }
+
+    
     }
 
+    public void DestroyObj()
+    {
+      if (_target == null)
+      {
+        Destroy(gameObject);
+      }
+    }
     private IEnumerator SpawnWave(WaveVo wave)
     {
       state = SpawnState.Spawning;
@@ -102,17 +112,19 @@ namespace Runtime.Context.Game.Scripts.Vo
 
       GameObject newEnemy = Instantiate(zombie, randomSpawner.position, randomSpawner.rotation, transform);
       ZombieStats newEnemyStats = newEnemy.GetComponent<ZombieStats>();
-      newEnemyStats.SetTarget(_playerTarget);
-      // if (Random.Range(0, 2) == 0)
-      // {
-      //   newEnemyStats.SetTarget(_playerTarget);
-      // }
-      // else
-      // {
-      //   newEnemyStats.SetTarget(_houseTarget);
-      // }
+      //newEnemyStats.SetTarget(_playerTarget);
+      if (Random.Range(0, 2) == 0)
+      {
+        newEnemyStats.SetTarget(_playerTarget);
+        _target = _playerTarget;
+      }
+      else
+      {
+        newEnemyStats.SetTarget(_houseTarget);
+        _target = _houseTarget;
+      }
 
-      // newEnemyStats.SetTarget(target);
+      //newEnemyStats.SetTarget(target);
       enemyList.Add(newEnemyStats);
       Debug.Log(randomInt);
     }

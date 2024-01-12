@@ -432,4 +432,5 @@ MonoBehaviour:
   inventory: {fileID: 11400000, guid: 4df2f7892461e2342abc832710c3a47d, type: 2}
   player: {fileID: 5645917282671187660, guid: 1782f44ad1567b04ba9a21cbb91ec1bb, type: 3}
   spawner: {fileID: 7611536347938310443, guid: 0ac82d61c2e326344bc01334496dfcde, type: 3}
+  houseSpawner: {fileID: 7611536347938310443, guid: 5dfb44de8381a514ebec3a5582af8847, type: 3}
   house: {fileID: 2604761409748687327, guid: 1dd7dbd1a927acb46a150fc609a58078, type: 3}

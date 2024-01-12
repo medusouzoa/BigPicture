@@ -20,13 +20,10 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
     [SerializeField]
     private float stoppingDistance;
 
-    [Inject]
-    public IGameModel gameModel { get; set; }
 
     private void Start()
     {
       GetReferences();
-      Debug.Log("enemy spawn"+gameModel.enemySpawn);
     }
 
     private void Update()
@@ -49,7 +46,6 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
           timeOfLastAttack = Time.time;
         }
 
-      
 
         if (Time.time >= timeOfLastAttack + _stats.attackSpeed)
         {

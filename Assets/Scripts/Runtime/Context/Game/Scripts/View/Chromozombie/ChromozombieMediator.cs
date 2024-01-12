@@ -32,6 +32,7 @@ namespace Runtime.Context.Game.Scripts.View.Chromozombie
 
     [Inject]
     public IDamageModel damageModel { get; set; }
+
     [Inject]
     public IGameModel gameModel { get; set; }
 
@@ -42,7 +43,7 @@ namespace Runtime.Context.Game.Scripts.View.Chromozombie
     {
       cam = cameraModel.GetCameraByKey("1");
       view.dispatcher.AddListener(ZombieEvent.Menu, OnMenuOpen);
-      Debug.Log("EnemySpawn"+gameModel.enemySpawn);
+      Debug.Log("EnemySpawn" + gameModel.enemySpawn);
     }
 
 

@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 3729121751048857701}
   - component: {fileID: 4568966667034508571}
   - component: {fileID: 6544117163208561636}
-  - component: {fileID: 777038744990562306}
   - component: {fileID: 4562421688447450164}
   m_Layer: 0
   m_Name: Smithy
@@ -171,22 +170,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!208 &777038744990562306
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2604761409748687327}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 6.7360005, y: 6.6670003, z: 5.024}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0.185, y: 6.6670003, z: 0.35200003}
-  m_TimeToStationary: 0.5
 --- !u!114 &4562421688447450164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 0
-  isDead: 0
+  isDead: 1
 --- !u!1 &5393515395871539025
 GameObject:
   m_ObjectHideFlags: 0

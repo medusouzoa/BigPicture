@@ -27,7 +27,7 @@ namespace Runtime.Context.Game.Scripts.Vo
         health = maxHealth;
       }
     }
-  
+
     private void Die()
     {
       isDead = true;
