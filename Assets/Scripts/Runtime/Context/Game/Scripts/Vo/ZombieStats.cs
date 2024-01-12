@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.GameModel;
 using Runtime.Context.Game.Scripts.Models.InventoryObject;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
@@ -79,8 +80,11 @@ namespace Runtime.Context.Game.Scripts.Vo
       _items.Add(stoneObject);
       int randomIndex = new Random().Next(_items.Count);
       int amount = UnityEngine.Random.Range(0, 9);
+      int itemAmount = inventory.GetAmountByName(_items[randomIndex].itemName);
       inventory.AddItem(_items[randomIndex], amount);
       Debug.Log("Items added: " + _items[randomIndex].itemName + " amount: " + amount);
+      int result = itemAmount + amount;
+      StartCoroutine(web.UpdateAmount(_items[randomIndex].itemName, result));
     }
 
     private void Die()

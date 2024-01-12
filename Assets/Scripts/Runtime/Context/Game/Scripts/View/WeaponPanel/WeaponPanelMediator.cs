@@ -1,4 +1,5 @@
-﻿using Runtime.Context.Game.Scripts.Models.DamageModel;
+﻿using Runtime.Context.Game.Scripts.Models.Bundle;
+using Runtime.Context.Game.Scripts.Models.DamageModel;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using strange.extensions.mediation.impl;
 using TMPro;
@@ -103,7 +104,8 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
     {
       damageModel.zombie.TakeDamage(i);
       CloseWeaponPanel();
-      view.inventory.RemoveItem(item, i);
+      view.inventory.RemoveItem(item, 1);
+      StartCoroutine(web.UpdateAmount(item.itemName, view.inventory.GetAmountByName(item.itemName)));
     }
 
     private bool IsClickOverUIPanel()

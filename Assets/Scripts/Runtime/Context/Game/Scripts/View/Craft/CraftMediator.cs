@@ -105,11 +105,11 @@ namespace Runtime.Context.Game.Scripts.View.Craft
     {
       view.inventory.RemoveItem(view.craftBook.recipes[i].ingredients[0].item, view.craftBook.recipes[i].ingredients[0].amount);
       view.inventory.RemoveItem(view.craftBook.recipes[i].ingredients[1].item, view.craftBook.recipes[i].ingredients[1].amount);
-      int item1 = view.inventory.GetAmountByName(view.craftBook.recipes[i].ingredients[0].item.itemName) - view.craftBook.recipes[i].ingredients[0].amount;
-      int item2 = view.inventory.GetAmountByName(view.craftBook.recipes[i].ingredients[1].item.itemName) - view.craftBook.recipes[i].ingredients[1].amount;
-
-      // StartCoroutine(web.UpdateAmount(view.craftBook.recipes[i].ingredients[0].item.itemName, item1));
-      // StartCoroutine(web.UpdateAmount(view.craftBook.recipes[i].ingredients[0].item.itemName, item2));
+      int item1 = view.inventory.GetAmountByName(view.craftBook.recipes[i].ingredients[0].item.itemName);
+      int item2 = view.inventory.GetAmountByName(view.craftBook.recipes[i].ingredients[1].item.itemName);
+      Debug.Log("new amount of item1 is: " + item1);
+      StartCoroutine(web.UpdateAmount(view.craftBook.recipes[i].ingredients[0].item.itemName, item1));
+      StartCoroutine(web.UpdateAmount(view.craftBook.recipes[i].ingredients[1].item.itemName, item2));
     }
 
     private void OnClose()
