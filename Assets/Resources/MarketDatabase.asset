@@ -13,15 +13,18 @@ MonoBehaviour:
   m_Name: MarketDatabase
   m_EditorClassIdentifier: 
   marketData:
-  - <Name>k__BackingField: chair
+  - <Name>k__BackingField: Fence
+    <Size>k__BackingField: {x: 1, y: 1}
+    <Prefab>k__BackingField: {fileID: 159046, guid: b10237067370545479ead9bdac817d9c, type: 3}
+    placedObjectType: {fileID: 11400000, guid: d8b8fc629d320fe44888e1614affbe53, type: 2}
+    <itemImage>k__BackingField: {fileID: 123566374299958281, guid: 66204bcb084728040948df53e244d04a, type: 3}
+  - <Name>k__BackingField: Chair
     <Size>k__BackingField: {x: 1, y: 1}
     <Prefab>k__BackingField: {fileID: 4428052050468720457, guid: e033e50487fb016449143cd70d837387, type: 3}
     placedObjectType: {fileID: 11400000, guid: f23b6118ec140634e9e7d9b68da2675a, type: 2}
-  - <Name>k__BackingField: bed
+    <itemImage>k__BackingField: {fileID: 123566374299958281, guid: aa5b766c187cab048b27f2d797fd6b30, type: 3}
+  - <Name>k__BackingField: Vase
     <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 3487007735555770654, guid: 4721f1b576334dc46b3c72470bf613e3, type: 3}
-    placedObjectType: {fileID: 11400000, guid: ac17caecc57be6c49b43f4030a5bb119, type: 2}
-  - <Name>k__BackingField: bed
-    <Size>k__BackingField: {x: 1, y: 1}
-    <Prefab>k__BackingField: {fileID: 3487007735555770654, guid: 4721f1b576334dc46b3c72470bf613e3, type: 3}
-    placedObjectType: {fileID: 11400000, guid: ac17caecc57be6c49b43f4030a5bb119, type: 2}
+    <Prefab>k__BackingField: {fileID: 8562074738628550642, guid: df039b09bb35a5a4db6edf76716483a2, type: 3}
+    placedObjectType: {fileID: 11400000, guid: 6116fe6b0100b5f4c9ae7b4d03d732ce, type: 2}
+    <itemImage>k__BackingField: {fileID: 123566374299958281, guid: 9961a52bc90d1744e9b1a0c46dc260b0, type: 3}

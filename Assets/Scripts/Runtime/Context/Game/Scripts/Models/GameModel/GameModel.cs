@@ -11,6 +11,8 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
     [Inject(ContextKeys.CONTEXT_DISPATCHER)]
     public IEventDispatcher dispatcher { get; set; }
 
+    public EnemySpawner enemySpawn { get; set; }
+    public PlayerStats playerStats { get; set; }
 
     public List<List<TileGridVo>> grids { get; private set; }
     public int col { get; set; }
@@ -28,6 +30,8 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
       dispatcher.Dispatch(GameEvent.CreateGrid);
       FillGridData();
     }
+
+ 
 
     private void FillGridData()
     {

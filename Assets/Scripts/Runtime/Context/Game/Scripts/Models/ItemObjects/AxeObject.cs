@@ -9,6 +9,7 @@ namespace Runtime.Context.Game.Scripts.Models.ItemObjects
     {
       type = ItemType.Axe;
       itemName = ItemType.Axe.ToString();
+      
     }
   }
 }

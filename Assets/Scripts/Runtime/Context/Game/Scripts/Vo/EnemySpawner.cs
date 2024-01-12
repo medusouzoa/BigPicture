@@ -36,7 +36,8 @@ namespace Runtime.Context.Game.Scripts.Vo
     [SerializeField]
     private GameObject zombie;
 
-    private Transform target;
+    private Transform _playerTarget;
+    private Transform _houseTarget;
 
 
     private void Start()
@@ -84,13 +85,33 @@ namespace Runtime.Context.Game.Scripts.Vo
       yield break;
     }
 
+    public void SetTargetSpawner(Transform target)
+    {
+      _playerTarget = target;
+    }
+
+    public void SetHouseTargetSpawner(Transform target)
+    {
+      _houseTarget = target;
+    }
+
     private void SpawnZombie()
     {
       int randomInt = Random.Range(1, spawners.Length);
       Transform randomSpawner = spawners[randomInt];
 
-      GameObject newEnemy = Instantiate(zombie, randomSpawner.position, randomSpawner.rotation);
+      GameObject newEnemy = Instantiate(zombie, randomSpawner.position, randomSpawner.rotation, transform);
       ZombieStats newEnemyStats = newEnemy.GetComponent<ZombieStats>();
+      newEnemyStats.SetTarget(_playerTarget);
+      // if (Random.Range(0, 2) == 0)
+      // {
+      //   newEnemyStats.SetTarget(_playerTarget);
+      // }
+      // else
+      // {
+      //   newEnemyStats.SetTarget(_houseTarget);
+      // }
+
       // newEnemyStats.SetTarget(target);
       enemyList.Add(newEnemyStats);
       Debug.Log(randomInt);

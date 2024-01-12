@@ -15,5 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 123566374299958281, guid: 9cea82d783f99d94a84b43f423b87389, type: 3}
   type: 5
   itemName: Hammer
+  damage: 50
   description: Hammer
   isWeapon: 1
+  weaponButton: {fileID: 3104291778810444388, guid: c906d5edf828b7643bd228a6adf3ecb7, type: 3}

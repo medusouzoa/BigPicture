@@ -15,5 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 123566374299958281, guid: 4a061736a59b24a4d8120a33a1221c98, type: 3}
   type: 4
   itemName: Axe
+  damage: 100
   description: 
   isWeapon: 1
+  weaponButton: {fileID: 3104291778810444388, guid: f3c060a46a8c72144be61ce9de8c0015, type: 3}

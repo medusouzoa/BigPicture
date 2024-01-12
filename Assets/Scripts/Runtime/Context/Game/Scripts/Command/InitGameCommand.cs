@@ -1,4 +1,5 @@
 using Runtime.Context.Game.Scripts.Enum;
+using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.InventoryModel;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
@@ -24,6 +25,7 @@ namespace Runtime.Context.Game.Scripts.Command
       Transform parent = layerModel.GetLayer(Layers.Hud);
       panelModel.LoadPanel("WelcomePanel", parent);
       inventoryModel.InitializeDatabase();
+ 
     }
   }
 }

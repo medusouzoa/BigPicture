@@ -40,6 +40,7 @@ namespace Runtime.Context.Game.Scripts.View.Inventory
       for (int i = 0; i < view.inventory.container.Count; i++)
       {
         GameObject obj = Instantiate(view.inventory.container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+        obj.transform.localScale = new Vector3(2.0f, 2.0f, 2.0f);
         obj.GetComponent<RectTransform>().localPosition = view.GetPosition(i);
         obj.GetComponentInChildren<TextMeshProUGUI>().text = view.inventory.container[i].amount.ToString("n0");
       }

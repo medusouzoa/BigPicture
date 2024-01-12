@@ -1,4 +1,5 @@
 ﻿using System;
+using Runtime.Context.Game.Scripts.Models.GameModel;
 using Runtime.Context.Game.Scripts.Vo;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,15 +13,20 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
     private ZombieStats _stats;
     public bool hasReached = false;
     public Transform target;
+    private HouseStats _house;
 
     public float timeOfLastAttack = 0;
 
     [SerializeField]
     private float stoppingDistance;
 
+    [Inject]
+    public IGameModel gameModel { get; set; }
+
     private void Start()
     {
       GetReferences();
+      Debug.Log("enemy spawn"+gameModel.enemySpawn);
     }
 
     private void Update()
@@ -43,6 +49,7 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
           timeOfLastAttack = Time.time;
         }
 
+      
 
         if (Time.time >= timeOfLastAttack + _stats.attackSpeed)
         {
@@ -65,10 +72,12 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
       _anim.SetTrigger("Attack");
       _stats.DealDamage(playerStats);
     }
+
     public void SetTarget(Transform newTarget)
     {
       target = newTarget;
     }
+
     private void GetReferences()
     {
       _agent = GetComponent<NavMeshAgent>();

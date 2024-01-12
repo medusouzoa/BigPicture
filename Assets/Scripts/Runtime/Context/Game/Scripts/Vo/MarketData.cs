@@ -18,5 +18,8 @@ namespace Runtime.Context.Game.Scripts.Vo
 
     [field: SerializeField]
     public PlacedObjectType placedObjectType;
+
+    [field: SerializeField]
+    public GameObject itemImage { get; private set; }
   }
 }

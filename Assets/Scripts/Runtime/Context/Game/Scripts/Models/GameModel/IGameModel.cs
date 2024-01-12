@@ -6,7 +6,9 @@ namespace Runtime.Context.Game.Scripts.Models.GameModel
   public interface IGameModel
   {
     List<List<TileGridVo>> grids { get; }
-    
+    EnemySpawner enemySpawn { get; set; }
+    PlayerStats playerStats { get; set; }
+
     void Setup(int n);
 
     void StartGame();

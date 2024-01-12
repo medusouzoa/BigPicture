@@ -5,6 +5,7 @@ using Runtime.Context.Game.Scripts.Models.Grid;
 using Runtime.Context.Game.Scripts.ObjectPlacingObject;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.mediation.impl;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,7 +58,7 @@ namespace Runtime.Context.Game.Scripts.View.Market
       {
         Button itemButton = Instantiate(view.itemButtonPrefab, Vector3.zero, Quaternion.identity, view.buttonContainer);
         _itemButtons.Add(itemButton);
-
+        itemButton.GetComponentInChildren<TextMeshProUGUI>().text = marketData.placedObjectType.price.ToString("n0");
         float xPos = -500f + currentColumn * (view.itemButtonPrefab.GetComponent<RectTransform>().rect.width + view.buttonSpacing);
         float yPos = 0 - currentRow * (view.itemButtonPrefab.GetComponent<RectTransform>().rect.height + rowSpacing + view.buttonSpacing);
 
@@ -72,6 +73,7 @@ namespace Runtime.Context.Game.Scripts.View.Market
           currentRow++;
         }
 
+        GameObject contentInstance = Instantiate(marketData.itemImage, itemButton.transform);
         itemButton.onClick.AddListener(() => OnItemButtonClick(marketData));
       }
     }

@@ -15,4 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 123566374299958281, guid: 2176eefd7bcd63c48bd7ff11c8412002, type: 3}
   type: 2
   itemName: Stone
+  damage: 0
   description: 
+  isWeapon: 0
+  weaponButton: {fileID: 3401946770097732253, guid: 908c4b5cc94fbbe42890d0305d38a171, type: 3}

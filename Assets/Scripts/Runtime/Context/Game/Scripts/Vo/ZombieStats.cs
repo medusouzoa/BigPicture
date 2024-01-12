@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Runtime.Context.Game.Scripts.Models.GameModel;
 using Runtime.Context.Game.Scripts.Models.InventoryObject;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using UnityEngine;
@@ -18,6 +19,7 @@ namespace Runtime.Context.Game.Scripts.Vo
     private ZombieStats _stats;
     public bool hasReached = false;
     private Transform _target;
+    private Transform _houseTarget;
     public InventoryObject inventory;
     public float timeOfLastAttack = 0;
     private List<ItemObject> _items;
@@ -30,24 +32,29 @@ namespace Runtime.Context.Game.Scripts.Vo
 
     public float attackSpeed;
 
+    
     // [SerializeField]
     // private bool canAttack;
     private void Update()
     {
-      //  MoveToTarget();
+       MoveToTarget();
     }
 
     private void Start()
     {
       InitVariables();
       GetReferences();
+      
     }
 
     public void DealDamage(PlayerStats playerStats)
     {
       playerStats.TakeDamage(damage);
     }
-
+    public void DealHouseDamage(HouseStats houseStats)
+    {
+      houseStats.TakeDamage(damage);
+    }
     public virtual void CheckHealth()
     {
       if (health <= 0)
@@ -86,11 +93,13 @@ namespace Runtime.Context.Game.Scripts.Vo
       health = newHealth;
       CheckHealth();
     }
+      
 
     public void TakeDamage(int damage)
     {
       int healthAfterDamage = health - damage;
       SetHealth(healthAfterDamage);
+      Debug.Log("Damage given by takedamage: "+ damage);
     }
 
     public void Heal(int heal)
@@ -102,10 +111,10 @@ namespace Runtime.Context.Game.Scripts.Vo
 
     private void InitVariables()
     {
-      maxHealth = 25;
+      maxHealth = 80;
       SetHealth(maxHealth);
       isDead = false;
-      damage = 1;
+      damage = 10;
       attackSpeed = 1.5f;
       // canAttack = true;
     }
@@ -130,7 +139,9 @@ namespace Runtime.Context.Game.Scripts.Vo
         {
           timeOfLastAttack = Time.time;
           PlayerStats playerStats = _target.GetComponent<PlayerStats>();
+        //  HouseStats houseStats = _houseTarget.GetComponent<HouseStats>();
           AttackTarget(playerStats);
+         // AttackHouseTarget(houseStats);
         }
       }
       else
@@ -147,10 +158,15 @@ namespace Runtime.Context.Game.Scripts.Vo
       _anim.SetTrigger("Attack");
       _stats.DealDamage(playerStats);
     }
+    // private void AttackHouseTarget(HouseStats houseStats)
+    // {
+    //   _stats.DealHouseDamage(houseStats);
+    // }
 
     public void SetTarget(Transform newTarget)
     {
       _target = newTarget;
+      
     }
 
     private void GetReferences()

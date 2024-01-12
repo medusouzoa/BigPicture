@@ -10,6 +10,9 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
     public GameObject player;
     public GameObject spawner;
 
+    [SerializeField]
+    public GameObject house;
+
     public void OnCheckAllDone()
     {
       dispatcher.Dispatch(WelcomePanelEvent.Start);

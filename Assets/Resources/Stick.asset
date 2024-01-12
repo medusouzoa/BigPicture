@@ -15,4 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 123566374299958281, guid: 55722067cb085914ca4292f028db53da, type: 3}
   type: 3
   itemName: Stick
+  damage: 0
   description: A simple wood stick
+  isWeapon: 0
+  weaponButton: {fileID: 3401946770097732253, guid: 908c4b5cc94fbbe42890d0305d38a171, type: 3}

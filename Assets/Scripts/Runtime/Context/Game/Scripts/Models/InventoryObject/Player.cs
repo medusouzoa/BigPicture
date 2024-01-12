@@ -20,7 +20,9 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryObject
       if (item)
       {
         inventory.AddItem(item.item, 1);
-        StartCoroutine(web.SaveItem(item.item.name, 1));
+        Debug.Log("inventory.GetAmountByName(item.item.itemName)");
+        // StartCoroutine(web.UpdateAmount(item.item.itemName,inventory.GetAmountByName(item.item.itemName)));
+        // StartCoroutine(web.SaveItem(item.item.name, 1));
         Destroy(other.gameObject);
       }
     }

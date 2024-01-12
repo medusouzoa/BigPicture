@@ -62,37 +62,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2877788062749141822}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3042788256717495249
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1296680474023357621}
-  m_Layer: 0
-  m_Name: Spawner (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1296680474023357621
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3042788256717495249}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 86.5, y: 0.05, z: 133.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2877788062749141822}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7611536347938310443
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +94,6 @@ Transform:
   m_Children:
   - {fileID: 8325575009036387264}
   - {fileID: 1797498786831141853}
-  - {fileID: 1296680474023357621}
   - {fileID: 959330694629125347}
   - {fileID: 7391564596072587627}
   m_Father: {fileID: 0}
@@ -155,7 +123,6 @@ MonoBehaviour:
   spawners:
   - {fileID: 8325575009036387264}
   - {fileID: 1797498786831141853}
-  - {fileID: 1296680474023357621}
   - {fileID: 959330694629125347}
   - {fileID: 7391564596072587627}
   zombie: {fileID: 6776287523911283916, guid: 07a36ce3b9d27a94c81a0962332c11a0, type: 3}

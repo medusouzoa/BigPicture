@@ -1,43 +1,25 @@
-﻿using System;
-using Runtime.Context.Game.Scripts.Models.Bundle;
-using Runtime.Context.Game.Scripts.Models.CameraModel;
-using Runtime.Context.Game.Scripts.Vo;
+﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class ClickHandler : MonoBehaviour
+namespace Runtime.Context.Game.Scripts.View._DefeatMechanism
 {
-  private ICameraModel _cameraModel;
-  public LayerMask zombieLayer;
-
-  private Camera cam;
-
-  //public GameObject damagePanel;
-  private void Start()
+  public class ClickHandler
   {
-    cam = _cameraModel.GetCameraByKey("1");
-  }
+    private static readonly PointerEventData EventDataCurrentPosition = new(EventSystem.current);
+    private static List<RaycastResult> _results = new();
 
-  void Update()
-  {
-    if (Input.GetMouseButtonDown(0)) // Left mouse button click
-    {
-      Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-      RaycastHit hit;
-
-      if (Physics.Raycast(ray, out hit, Mathf.Infinity, zombieLayer))
-      {
-        ZombieStats zombie = hit.collider.GetComponent<ZombieStats>();
-
-        if (zombie != null)
-        {
-          // Open UI panel to choose melee weapon
-          // damagePanel.SetActive(true);
-          // Pass the selected zombie to the UI panel for further processing
-          zombie.TakeDamage(100);
-          Debug.Log(zombie.health);
-          Debug.Log("zombie clicked");
-        }
-      }
-    }
+    // public static bool Check(Vector2 pointPosition)
+    // {
+    //   // Referencing this code for GraphicRaycaster https://gist.github.com/stramit/ead7ca1f432f3c0f181f
+    //   // the ray cast appears to require only eventData.position.
+    //   EventDataCurrentPosition.position = new Vector2(pointPosition.x, pointPosition.y);
+    //   _results.Clear();
+    //   EventSystem.current.RaycastAll(EventDataCurrentPosition, _results);
+    //   _results = _results.Where(result => result.gameObject.layer != InteractionSettings.ClickableLayer).ToList();
+    //
+    //   return _results.Count > 0;
+    // }
   }
 }

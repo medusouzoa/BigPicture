@@ -32,12 +32,16 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
       }
     }
 
-    public static IEnumerator GetUserItems(System.Action<string> callback)
+    public static IEnumerator UpdateAmount(string itemName, int newAmount)
     {
       WWWForm form = new WWWForm();
-      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/GetItem.php", form))
+      form.AddField("name", itemName);
+      form.AddField("amount", newAmount);
+
+      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/inventoryUpdate.php", form))
       {
         yield return www.SendWebRequest();
+
         if (www.result == UnityWebRequest.Result.ConnectionError)
         {
           Debug.Log(www.error);
@@ -45,11 +49,66 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
         else
         {
           Debug.Log(www.downloadHandler.text);
-          string jsonArray = www.downloadHandler.text;
-          callback(jsonArray);
         }
       }
     }
+    public static IEnumerator GetItemAmountByName(string itemName)
+    {
+      WWWForm form = new WWWForm();
+      form.AddField("name", itemName);
+
+      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/getInventoryItems.php", form))
+      {
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError)
+        {
+          Debug.Log(www.error);
+        }
+        else
+        {
+          Debug.Log(www.downloadHandler.text);
+        }
+      }
+    }
+    public static IEnumerator GetUserItems(System.Action<string> callback)
+    {
+      using (UnityWebRequest www = UnityWebRequest.Get("http://localhost/bigPictureDb/GetInventory.php"))
+      {
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError)
+        {
+          Debug.Log(www.error);
+        }
+        else
+        {
+          Debug.Log(www.downloadHandler.text);
+          string itemsJson = www.downloadHandler.text;
+          callback(itemsJson);
+        }
+      }
+    }
+
+
+    // public static IEnumerator GetUserItems(System.Action<string> callback)
+    // {
+    //   WWWForm form = new WWWForm();
+    //   using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/GetItem.php", form))
+    //   {
+    //     yield return www.SendWebRequest();
+    //     if (www.result == UnityWebRequest.Result.ConnectionError)
+    //     {
+    //       Debug.Log(www.error);
+    //     }
+    //     else
+    //     {
+    //       Debug.Log(www.downloadHandler.text);
+    //       string jsonArray = www.downloadHandler.text;
+    //       callback(jsonArray);
+    //     }
+    //   }
+    // }
 
     IEnumerator GetRequest(string uri)
     {

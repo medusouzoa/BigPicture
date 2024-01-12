@@ -15,5 +15,7 @@ MonoBehaviour:
   prefab: {fileID: 123566374299958281, guid: c5a7a7f8b198f354f89102f28b73117e, type: 3}
   type: 6
   itemName: Sword
+  damage: 70
   description: Sword
   isWeapon: 1
+  weaponButton: {fileID: 3104291778810444388, guid: 2dc597d9ab7ec35458633519b4cb2ce9, type: 3}

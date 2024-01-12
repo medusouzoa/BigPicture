@@ -28,6 +28,19 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryObject
       }
     }
 
+    public int GetAmountByName(string itemName)
+    {
+      foreach (InventorySlot slot in container)
+      {
+        if (slot.item != null && slot.item.itemName == itemName)
+        {
+          return slot.amount;
+        }
+      }
+
+      return 0; // Item not found
+    }
+
     public bool ContainsItem(ItemObject item)
     {
       for (int i = 0; i < container.Count; i++)

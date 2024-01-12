@@ -39,12 +39,34 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
     public Action<string> createItemsCallback;
     public Dictionary<ItemObject, int> itemsFromDb;
+    public Transform player;
+    public PlayerStats pStats;
+    public EnemySpawner eSpawner;
 
     public override void OnRegister()
     {
       itemsFromDb = new Dictionary<ItemObject, int>();
       view.dispatcher.AddListener(WelcomePanelEvent.Start, OnCheckAllDone);
       StartCallback();
+      Vector3 spawnPosition = new Vector3(88, 0, 80);
+      GameObject playerInstance = Instantiate(view.player, spawnPosition, Quaternion.identity);
+      PlayerStats playerStats = playerInstance.GetComponent<PlayerStats>();
+      pStats = playerStats;
+      player = playerInstance.transform;
+      StartCoroutine(web.GetItemAmountByName("Stick"));
+    }
+
+    private void Update()
+    {
+      EndGame();
+    }
+
+    public void EndGame()
+    {
+      if (pStats.isDead)
+      {
+        Destroy(eSpawner);
+      }
     }
 
     public void StartCallback()
@@ -75,7 +97,10 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
         for (int i = 0; i < itemsFromDb.Count; i++)
         {
-          view.inventory.AddItem(itemsFromDb.Keys.ToList()[i], itemsFromDb.Values.ToList()[i]);
+          if (itemsFromDb.Values.ToList()[i] != 0)
+          {
+            view.inventory.AddItem(itemsFromDb.Keys.ToList()[i], itemsFromDb.Values.ToList()[i]);
+          }
         }
       };
       StartCoroutine(web.GetUserItems(createItemsCallback));
@@ -89,11 +114,13 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       parent = layerModel.GetLayer(Layers.Hud);
       panelModel.LoadPanel(GamePanels.InGameHud, parent)
         .Then(() => { gameModel.StartGame(); });
-      Vector3 spawnPosition = new Vector3(88, 0, 80);
 
-      // Instantiate the player at the specified position with the default rotation
-      GameObject playerInstance = Instantiate(view.player, spawnPosition, Quaternion.identity);
       GameObject spawner = Instantiate(view.spawner, Vector3.zero, Quaternion.identity);
+      EnemySpawner enemySpawner = spawner.GetComponent<EnemySpawner>();
+      eSpawner = enemySpawner;
+      enemySpawner.SetTargetSpawner(player);
+      enemySpawner.SetHouseTargetSpawner(view.house.transform);
+      Debug.Log("spawner transform set");
     }
   }
 }
