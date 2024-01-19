@@ -1,4 +1,5 @@
-﻿using Runtime.Context.Game.Scripts.Enum;
+﻿using System;
+using Runtime.Context.Game.Scripts.Enum;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
 using strange.extensions.mediation.impl;
@@ -13,7 +14,8 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
     Craft,
     Inventory,
     Settings,
-    Close
+    Close,
+    MoneyUpdate
   }
 
   public class MainHudMediator : EventMediator
@@ -27,9 +29,8 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
     [Inject]
     public IPanelModel panelModel { get; set; }
 
-
-    public Transform gamePanel;
-
+    [Inject]
+    public IPlayerModel playerModel { get; set; }
 
     public override void OnRegister()
     {
@@ -38,6 +39,13 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
       view.dispatcher.AddListener(MainHudEvent.Craft, OnCraftOpen);
       view.dispatcher.AddListener(MainHudEvent.Settings, OnSettingsOpen);
       view.dispatcher.AddListener(MainHudEvent.Close, OnClose);
+      view.UpdateValue(playerModel.money);
+      // view.dispatcher.AddListener(MainHudEvent.MoneyUpdate, MoneyUpdate);
+    }
+
+    private void Update()
+    {
+      view.UpdateValue(playerModel.money);
     }
 
     private void OnMarketOpen()

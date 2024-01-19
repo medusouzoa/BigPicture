@@ -47,6 +47,7 @@ namespace Runtime.Context.Game.Scripts.Config
       injectionBinder.Bind<IInventoryModel>().To<InventoryModel>().ToSingleton();
       injectionBinder.Bind<ICameraModel>().To<CameraModel>().ToSingleton();
       injectionBinder.Bind<IDamageModel>().To<DamageModel>().ToSingleton();
+      injectionBinder.Bind<IPlayerModel>().To<PlayerModel>().ToSingleton();
 
       injectionBinder.Bind<BundleFacade>().To<BundleFacade>().ToSingleton();
 

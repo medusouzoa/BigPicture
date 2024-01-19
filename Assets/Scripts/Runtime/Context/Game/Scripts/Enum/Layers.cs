@@ -5,6 +5,7 @@ namespace Runtime.Context.Game.Scripts.Enum
     None,
     Hud,
     InGameLayer,
+    GameOver
    
   }
 }

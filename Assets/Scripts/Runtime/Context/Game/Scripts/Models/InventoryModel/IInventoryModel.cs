@@ -14,6 +14,8 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
     void AddItemToInventory(string itemName);
     JSONArray itemsArray { get; set; }
     Dictionary<ItemObject, int> items { get; set; }
+    JSONArray moneyArray { get; set; }
     void InitializeDatabase();
+    IEnumerator GetMoneyRoutine(string jsonArrayString);
   }
 }

@@ -52,12 +52,14 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
         }
       }
     }
-    public static IEnumerator GetItemAmountByName(string itemName)
+
+    public static IEnumerator UpdateMoneyAmount(int id, int newAmount)
     {
       WWWForm form = new WWWForm();
-      form.AddField("name", itemName);
+      form.AddField("id", id);
+      form.AddField("amount", newAmount);
 
-      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/getInventoryItems.php", form))
+      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/moneyUpdate.php", form))
       {
         yield return www.SendWebRequest();
 
@@ -71,6 +73,29 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
         }
       }
     }
+
+    public static IEnumerator GetMoneyAmountCoroutine(System.Action<string> callback)
+    {
+      WWWForm form = new WWWForm();
+      form.AddField("id", 0);
+
+      using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/GetMoneyAmount.php", form))
+      {
+        yield return www.SendWebRequest();
+
+        if (www.result == UnityWebRequest.Result.ConnectionError)
+        {
+          Debug.Log(www.error);
+        }
+        else
+        {
+          Debug.Log(www.downloadHandler.text);
+          string itemsJson = www.downloadHandler.text;
+          callback(itemsJson);
+        }
+      }
+    }
+
     public static IEnumerator GetUserItems(System.Action<string> callback)
     {
       using (UnityWebRequest www = UnityWebRequest.Get("http://localhost/bigPictureDb/GetInventory.php"))
@@ -90,26 +115,7 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
       }
     }
 
-
-    // public static IEnumerator GetUserItems(System.Action<string> callback)
-    // {
-    //   WWWForm form = new WWWForm();
-    //   using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/bigPictureDb/GetItem.php", form))
-    //   {
-    //     yield return www.SendWebRequest();
-    //     if (www.result == UnityWebRequest.Result.ConnectionError)
-    //     {
-    //       Debug.Log(www.error);
-    //     }
-    //     else
-    //     {
-    //       Debug.Log(www.downloadHandler.text);
-    //       string jsonArray = www.downloadHandler.text;
-    //       callback(jsonArray);
-    //     }
-    //   }
-    // }
-
+      
     IEnumerator GetRequest(string uri)
     {
       using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))

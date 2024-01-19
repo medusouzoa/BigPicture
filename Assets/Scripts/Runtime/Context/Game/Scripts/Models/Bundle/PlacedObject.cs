@@ -11,33 +11,23 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
     private Vector2Int _origin;
     private PlacedObjectType.Dir _dir;
 
-    public static PlacedObject Create(Vector3 worldPosition, Vector2Int origin, PlacedObjectType.Dir dir, PlacedObjectType placedObjectType, PlayerData player)
+    public static PlacedObject Create(Vector3 worldPosition, Vector2Int origin, PlacedObjectType.Dir dir, PlacedObjectType placedObjectType)
     {
-      if (player.money >= placedObjectType.price)
+     
+      GameObject placedObjectTransform = Instantiate(placedObjectType.prefab, worldPosition, Quaternion.Euler(0, placedObjectType.GetRotationAngle(dir), 0));
+      PlacedObject placedObject = placedObjectTransform.GetComponent<PlacedObject>();
+
+      if (placedObject != null)
       {
-        player.SubtractMoney(placedObjectType.price);
-        Debug.Log("purchased the item");
-        GameObject placedObjectTransform = Instantiate(placedObjectType.prefab, worldPosition, Quaternion.Euler(0, placedObjectType.GetRotationAngle(dir), 0));
-        PlacedObject placedObject = placedObjectTransform.GetComponent<PlacedObject>();
-
-        if (placedObject != null)
-        {
-          placedObject._placedObjectType = placedObjectType;
-          placedObject._origin = origin;
-          placedObject._dir = dir;
-        }
-        else
-        {
-        }
-
-        return placedObject;
+        placedObject._placedObjectType = placedObjectType;
+        placedObject._origin = origin;
+        placedObject._dir = dir;
       }
       else
       {
-        Debug.LogWarning("Player doesn't have enough money to buy the item.");
-
         return null;
       }
+      return placedObject;
     }
 
 

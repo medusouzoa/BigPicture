@@ -36,8 +36,11 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
     [Inject]
     public IInventoryModel inventoryModel { get; set; }
+    [Inject]
+    public IPlayerModel playerModel { get; set; }
 
     public Action<string> createItemsCallback;
+    public Action<string> createMoneyCallback;
     public Dictionary<ItemObject, int> itemsFromDb;
     public Transform player;
     public PlayerStats pStats;
@@ -47,9 +50,10 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
     public override void OnRegister()
     {
+      StartMoneyCallback();
+      StartCallback();
       itemsFromDb = new Dictionary<ItemObject, int>();
       view.dispatcher.AddListener(WelcomePanelEvent.Start, OnCheckAllDone);
-      StartCallback();
       Vector3 spawnPosition = new Vector3(88, 0, 80);
       Vector3 spawnHousePosition = new Vector3(100, 0, 114);
       GameObject playerInstance = Instantiate(view.player, spawnPosition, Quaternion.identity);
@@ -62,18 +66,6 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       player = playerInstance.transform;
     }
 
-    private void Update()
-    {
-      EndGame();
-    }
-
-    public void EndGame()
-    {
-      if (pStats.isDead)
-      {
-        Destroy(view.spawner);
-      }
-    }
 
     public void StartCallback()
     {
@@ -112,6 +104,21 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       StartCoroutine(web.GetUserItems(createItemsCallback));
     }
 
+    public void StartMoneyCallback()
+    {
+      createMoneyCallback = (arrayString) =>
+      {
+        string[] parts = arrayString.Split(':');
+
+        if (parts.Length == 2 && int.TryParse(parts[1].Trim(), out int amount))
+        {
+          playerModel.AddMoney(amount);
+          Debug.Log("money amount: " + amount);
+        }
+      };
+      StartCoroutine(web.GetMoneyAmountCoroutine(createMoneyCallback));
+    }
+
     private void OnCheckAllDone()
     {
       Transform parent = layerModel.GetLayer(Layers.InGameLayer);
@@ -126,6 +133,9 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       eSpawner = enemySpawner;
       enemySpawner.SetTargetSpawner(player);
       enemySpawner.SetHouseTargetSpawner(house);
+      pStats.SetSpawner(eSpawner);
+      hStats.SetSpawner(eSpawner);
+
       Debug.Log("spawner transform set");
     }
   }

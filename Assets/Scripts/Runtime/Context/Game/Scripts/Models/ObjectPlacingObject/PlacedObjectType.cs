@@ -12,7 +12,7 @@ namespace Runtime.Context.Game.Scripts.ObjectPlacingObject
     public int width;
     public int height;
     public List<PlaceBuildObjectVo> placeBuildObjectVos;
-    public float price;
+    public int price;
 
     public int GetRotationAngle(Dir dir)
     {

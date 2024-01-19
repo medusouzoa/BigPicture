@@ -19,6 +19,9 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
     [Inject]
     public IDamageModel damageModel { get; set; }
 
+    [Inject]
+    public IPlayerModel playerModel { get; set; }
+
     [FormerlySerializedAs("damage")]
     public int fistDamage;
 
@@ -103,9 +106,24 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
     private void OnWeaponSelected(int i, ItemObject item)
     {
       damageModel.zombie.TakeDamage(i);
+      if (i < 40)
+      {
+        playerModel.money += 10;
+      }
+
+      else if (i > 40 && i < 70)
+      {
+        playerModel.money += 20;
+      }
+      else
+      {
+        playerModel.money += 30;
+      }
+
       CloseWeaponPanel();
       view.inventory.RemoveItem(item, 1);
       StartCoroutine(web.UpdateAmount(item.itemName, view.inventory.GetAmountByName(item.itemName)));
+      StartCoroutine(web.UpdateMoneyAmount(0, playerModel.money));
     }
 
     private bool IsClickOverUIPanel()

@@ -346,7 +346,8 @@ MonoBehaviour:
   marketDatabase: {fileID: 11400000, guid: 933cd7c0ef68b2447b3c4e0e60b5ff4c, type: 2}
   buttonSpacing: 300
   placedObjectTypeList:
-  - {fileID: 11400000, guid: ac17caecc57be6c49b43f4030a5bb119, type: 2}
+  - {fileID: 11400000, guid: d8b8fc629d320fe44888e1614affbe53, type: 2}
+  - {fileID: 11400000, guid: 6116fe6b0100b5f4c9ae7b4d03d732ce, type: 2}
   - {fileID: 11400000, guid: f23b6118ec140634e9e7d9b68da2675a, type: 2}
 --- !u!1 &4191182345105138083
 GameObject:

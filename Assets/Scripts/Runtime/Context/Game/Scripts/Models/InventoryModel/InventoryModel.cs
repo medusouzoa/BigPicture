@@ -11,6 +11,7 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
   {
     private static Dictionary<string, ItemObject> itemDictionary;
     public JSONArray itemsArray { get; set; }
+    public JSONArray moneyArray { get; set; }
     public Dictionary<ItemObject, int> items { get; set; }
 
     [PostConstruct]
@@ -27,13 +28,17 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
       {
         JSONClass itemCount = itemsArray[i].AsObject;
 
-        // Replace "name" and "amount" with the actual field names in your JSON data
         string itemName = itemCount["name"];
         int itemAmount = itemCount["amount"].AsInt;
       }
 
-      // Other code...
 
+      yield return null;
+    }
+
+    public IEnumerator GetMoneyRoutine(string jsonArrayString)
+    {
+      moneyArray = JSON.Parse(jsonArrayString) as JSONArray;
       yield return null;
     }
 

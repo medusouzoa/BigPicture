@@ -9,5 +9,6 @@ namespace Runtime.Context.Game.Scripts.Enum
     public const string InventoryPanel = "InventoryPanel";
     public const string CraftPanel = "CraftPanel";
     public const string WeaponPanel = "WeaponPanel";
+    public const string GameOverPanel = "GameOverPanel";
   }
 }

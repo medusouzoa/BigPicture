@@ -23,7 +23,6 @@ namespace Runtime.Context.Game.Scripts.View.Market
     public MarketView view { get; set; }
 
     private List<Button> _itemButtons;
-    public PlayerData player;
 
     private PlacedObjectType currentSelectedType;
 
@@ -33,14 +32,16 @@ namespace Runtime.Context.Game.Scripts.View.Market
     [Inject]
     public ICameraModel cameraModel { get; set; }
 
+    [Inject]
+    public IPlayerModel playerModel { get; set; }
+
     private PlacedObjectType.Dir _dir = PlacedObjectType.Dir.Down;
 
     public Camera sceneCamera;
 
     public override void OnRegister()
     {
-      player = new PlayerData();
-      player.AddMoney(200f);
+      //player.AddMoney(200);
       view.dispatcher.AddListener(MarketEvent.Close, OnClose);
       _itemButtons = new List<Button>();
       PopulateMarketButtons();
@@ -114,27 +115,38 @@ namespace Runtime.Context.Game.Scripts.View.Market
           {
             Vector2Int rotationOffset = currentSelectedType.GetRotationOffset(_dir);
             Vector3 placedObjWorldPosition = new Vector3(nodeVo.x * 10, 0, nodeVo.z * 10) + new Vector3(rotationOffset.x, 0, rotationOffset.y) * 10f;
-
-            PlacedObject placedObject = PlacedObject.Create(placedObjWorldPosition, new Vector2Int(nodeVo.x, nodeVo.z), _dir, currentSelectedType, player);
-
-            foreach (Vector2Int gridPosition in gridPositionList)
+            if (playerModel.money >= currentSelectedType.price)
             {
-              gridModel.GetNodeByWorldPosition(new Vector3(gridPosition.x, 0, gridPosition.y)).SetPlacedObject(placedObject);
+              playerModel.SubtractMoney(currentSelectedType.price);
+              Debug.Log("purchased the item");
+
+              PlacedObject placedObject = PlacedObject.Create(placedObjWorldPosition, new Vector2Int(nodeVo.x, nodeVo.z), _dir, currentSelectedType);
+              StartCoroutine(web.UpdateMoneyAmount(0, playerModel.money));
+              Debug.Log("updated player money" + playerModel.money);
+              foreach (Vector2Int gridPosition in gridPositionList)
+              {
+                gridModel.GetNodeByWorldPosition(new Vector3(gridPosition.x, 0, gridPosition.y)).SetPlacedObject(placedObject);
+              }
+
+              nodeVo.SetPlacedObject(placedObject);
+            }
+            else
+            {
+              Debug.LogWarning("Player doesn't have enough money to buy the item.");
             }
 
-            nodeVo.SetPlacedObject(placedObject);
-          }
-          else
-          {
-            Debug.Log("Cannot build here! ");
-          }
-
-          if (Input.GetKeyDown(KeyCode.R))
-          {
-            _dir = PlacedObjectType.GetNextDir(_dir);
-            Debug.Log("working");
+           
           }
         }
+        else
+        {
+          Debug.Log("Cannot build here! ");
+        }
+      }
+       
+      if (Input.GetKeyDown(KeyCode.R))
+      {
+        _dir = PlacedObjectType.GetNextDir(_dir);
       }
     }
 
