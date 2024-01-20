@@ -45,7 +45,6 @@ namespace Runtime.Context.Game.Scripts.Models.Pathfinding
 
       startNode.gCost = 0;
       startNode.hCost = CalculateDistanceCost(startNode, endNode);
-      Debug.Log("hcost: " + startNode.hCost);
 
       while (_openList.Count > 0)
       {
@@ -125,29 +124,22 @@ namespace Runtime.Context.Game.Scripts.Models.Pathfinding
     {
       List<NodeVo> neighbourList = new List<NodeVo>();
 
-      //Left
+
       if (currentNode.x - 1 >= 0)
       {
         neighbourList.Add(GetNode(currentNode.x - 1, currentNode.z));
-        //Left Down 
         if (currentNode.z - 1 >= 0) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.z - 1));
-        //Left Up
         if (currentNode.z + 1 < gridModel.GetHeight()) neighbourList.Add(GetNode(currentNode.x - 1, currentNode.z + 1));
       }
 
       if (currentNode.x + 1 < gridModel.GetWidth())
       {
-        //Right
         neighbourList.Add(GetNode(currentNode.x + 1, currentNode.z));
-        //RightDown
         if (currentNode.z - 1 >= 0) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.z - 1));
-        //Right Up
         if (currentNode.z + 1 < gridModel.GetHeight()) neighbourList.Add(GetNode(currentNode.x + 1, currentNode.z + 1));
       }
 
-      //Down
       if (currentNode.z - 1 >= 0) neighbourList.Add(GetNode(currentNode.x, currentNode.z - 1));
-      //Up
       if (currentNode.z + 1 < gridModel.GetHeight()) neighbourList.Add(GetNode(currentNode.x, currentNode.z + 1));
 
       return neighbourList;

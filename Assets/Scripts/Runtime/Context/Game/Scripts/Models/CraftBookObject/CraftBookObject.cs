@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.Context.Game.Scripts.CraftBookObject
+namespace Runtime.Context.Game.Scripts.Models.CraftBookObject
 {
   [CreateAssetMenu(fileName = "CraftBook", menuName = "Craft System/CraftBook")]
   public class CraftBookObject : ScriptableObject

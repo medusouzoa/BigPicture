@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Runtime.Context.Game.Scripts.ObjectPlacingObject
+namespace Runtime.Context.Game.Scripts.Models.ObjectPlacingObject
 {
   [CreateAssetMenu]
   public class ObjectsDatabase : ScriptableObject

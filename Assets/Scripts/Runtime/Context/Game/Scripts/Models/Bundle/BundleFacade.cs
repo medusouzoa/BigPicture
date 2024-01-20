@@ -30,8 +30,6 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
     {
       Promise<GameObject> promise = new();
 
-      // Debug.LogWarning("InstantiateAndReturn>");
-
       AsyncOperationHandle<GameObject> asyncOperationHandle = Addressables.InstantiateAsync(key, parent);
       asyncOperationHandle.Completed += handle =>
       {

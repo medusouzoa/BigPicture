@@ -8,7 +8,7 @@ namespace Runtime.Context.Game.Scripts.Models.LayerModel
   {
     private Dictionary<Layers, Transform> _layers;
 
-    [PostConstruct] //bunu nereye yazarsak altındaki ilk çalışır.
+    [PostConstruct]
     public void OnPostConstruct()
     {
       _layers = new Dictionary<Layers, Transform>();
@@ -16,20 +16,17 @@ namespace Runtime.Context.Game.Scripts.Models.LayerModel
 
     public void AddLayer(Layers key, Transform value)
     {
-      Debug.Log("LayerModel>AddLayer> key: " + key + " value: " + value);
       _layers[key] = value;
     }
 
     public Transform GetLayer(Layers key)
     {
-      if (!_layers.ContainsKey(key)) //önce olumsuz koşulları yaz
+      if (!_layers.ContainsKey(key))
       {
-      //  Debug.LogError(" Player not found in layer map" + key);
         return null;
       }
 
       Transform transformCont = _layers[key];
-      Debug.Log("LayerModel>GetLayer> key: " + key + " value: " + transformCont);
 
       return transformCont;
     }

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.Grid;
 using Runtime.Context.Game.Scripts.Models.Pathfinding;
 using Runtime.Context.Game.Scripts.Vo;
@@ -24,8 +23,8 @@ namespace Runtime.Context.Game.Scripts.View.GridTest
     [Inject]
     public IPathfindingService pathfindingService { get; set; }
 
-    public int startX ;
-    public int startY ;
+    public int startX;
+    public int startY;
 
     public override void OnRegister()
     {

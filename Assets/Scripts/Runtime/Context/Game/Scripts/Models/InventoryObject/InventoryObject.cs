@@ -38,7 +38,7 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryObject
         }
       }
 
-      return 0; // Item not found
+      return 0; 
     }
 
     public bool ContainsItem(ItemObject item)

@@ -8,6 +8,7 @@ using Runtime.Context.Game.Scripts.Models.InventoryModel;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
+using Runtime.Context.Game.Scripts.Models.PlayerModel;
 using Runtime.Context.Game.Scripts.Vo;
 using Runtime.Context.Game.Scripts.Vo.SimpleJSON;
 using strange.extensions.mediation.impl;
@@ -36,6 +37,7 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
 
     [Inject]
     public IInventoryModel inventoryModel { get; set; }
+
     [Inject]
     public IPlayerModel playerModel { get; set; }
 
@@ -72,16 +74,13 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       createItemsCallback = (jsonArrayString) =>
       {
         StartCoroutine(inventoryModel.CreateItemsRoutine(jsonArrayString));
-        Debug.Log("Mediator bilgisi: " + inventoryModel.itemsArray.Count);
         for (int i = 0; i < inventoryModel.itemsArray.Count; i++)
         {
           JSONClass itemCount = inventoryModel.itemsArray[i].AsObject;
           string itemName = itemCount["name"];
-          Debug.Log("OnRegisterCallback, itemName: " + itemName);
           int itemAmount = itemCount["amount"].AsInt;
 
           ItemObject item = inventoryModel.GetItemByName(itemName);
-          Debug.Log("Son eklenen yer çalıştı: " + item.itemName);
 
           if (!itemsFromDb.ContainsKey(item) || itemsFromDb == null)
           {
@@ -135,8 +134,6 @@ namespace Runtime.Context.Game.Scripts.View.Welcome
       enemySpawner.SetHouseTargetSpawner(house);
       pStats.SetSpawner(eSpawner);
       hStats.SetSpawner(eSpawner);
-
-      Debug.Log("spawner transform set");
     }
   }
 }

@@ -1,6 +1,7 @@
 ﻿using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.DamageModel;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
+using Runtime.Context.Game.Scripts.Models.PlayerModel;
 using strange.extensions.mediation.impl;
 using TMPro;
 using UnityEngine;
@@ -59,7 +60,6 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
       Button newButton = fistButton.GetComponent<Button>();
       damageModel.damage = 20;
       fistDamage = damageModel.damage;
-      Debug.Log("Damage is assigned: " + fistDamage);
       newButton.onClick.AddListener(() => OnFistSelected(fistDamage));
 
       float xPos = -600f + currentColumn * (lastWeaponButtonWidth + view.buttonSpacing);
@@ -72,12 +72,10 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
       {
         if (view.inventory.container[i].item.isWeapon)
         {
-          Debug.Log("the item is weapon: " + view.inventory.container[i].item.itemName);
           GameObject itemButton = Instantiate(view.inventory.container[i].item.weaponButton, Vector3.zero, Quaternion.identity, view.buttonContainer);
           Button aButton = itemButton.GetComponent<Button>();
           weaponDamage = view.inventory.container[i].item.damage;
           itemObject = view.inventory.container[i].item;
-          Debug.Log("Damage is assigned: " + weaponDamage);
           aButton.onClick.AddListener(() => OnWeaponSelected(weaponDamage, itemObject));
           itemButton.GetComponentInChildren<TextMeshProUGUI>().text = view.inventory.container[i].amount.ToString("n0");
 
@@ -100,6 +98,7 @@ namespace Runtime.Context.Game.Scripts.View.WeaponPanel
     private void OnFistSelected(int i)
     {
       damageModel.zombie.TakeDamage(i);
+      playerModel.money += 10;
       CloseWeaponPanel();
     }
 

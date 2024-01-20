@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Runtime.Context.Game.Scripts.ObjectPlacingObject;
-using Runtime.Context.Game.Scripts.Vo;
+﻿using Runtime.Context.Game.Scripts.Models.ObjectPlacingObject;
 using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Models.Bundle
@@ -13,7 +11,6 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
 
     public static PlacedObject Create(Vector3 worldPosition, Vector2Int origin, PlacedObjectType.Dir dir, PlacedObjectType placedObjectType)
     {
-     
       GameObject placedObjectTransform = Instantiate(placedObjectType.prefab, worldPosition, Quaternion.Euler(0, placedObjectType.GetRotationAngle(dir), 0));
       PlacedObject placedObject = placedObjectTransform.GetComponent<PlacedObject>();
 
@@ -27,18 +24,8 @@ namespace Runtime.Context.Game.Scripts.Models.Bundle
       {
         return null;
       }
+
       return placedObject;
-    }
-
-
-    public List<Vector2Int> GetGridPositionList()
-    {
-      return _placedObjectType.GetGridPositionList(_origin, _dir);
-    }
-
-    public void DestroySelf()
-    {
-      Destroy(gameObject);
     }
   }
 }

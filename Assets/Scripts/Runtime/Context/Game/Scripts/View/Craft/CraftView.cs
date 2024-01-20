@@ -6,7 +6,7 @@ namespace Runtime.Context.Game.Scripts.View.Craft
   public class CraftView : EventView
   {
     public InventoryObject inventory;
-    public CraftBookObject.CraftBookObject craftBook;
+    public Models.CraftBookObject.CraftBookObject craftBook;
 
     public void OnClose()
     {

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Runtime.Context.Game.Scripts.Models.Bundle;
-using Runtime.Context.Game.Scripts.Models.GameModel;
 using Runtime.Context.Game.Scripts.Models.InventoryObject;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using UnityEngine;
@@ -33,8 +31,6 @@ namespace Runtime.Context.Game.Scripts.Vo
     public float attackSpeed;
 
 
-    // [SerializeField]
-    // private bool canAttack;
     private void Update()
     {
       MoveToTarget();
@@ -104,7 +100,7 @@ namespace Runtime.Context.Game.Scripts.Vo
     {
       int healthAfterDamage = health - damage;
       SetHealth(healthAfterDamage);
-      Debug.Log("Damage given by takedamage: " + damage);
+      Debug.Log("Damage given by take damage: " + damage);
     }
 
     public void Heal(int heal)
@@ -121,7 +117,6 @@ namespace Runtime.Context.Game.Scripts.Vo
       isDead = false;
       damage = 10;
       attackSpeed = 1.5f;
-      // canAttack = true;
     }
 
     private void MoveToTarget()
@@ -166,13 +161,11 @@ namespace Runtime.Context.Game.Scripts.Vo
 
     private void AttackTarget(PlayerStats playerStats)
     {
-      _anim.SetTrigger("Attack");
       _stats.DealDamage(playerStats);
     }
 
     private void AttackHouseTarget(HouseStats houseStats)
     {
-      _anim.SetTrigger("Attack");
       _stats.DealHouseDamage(houseStats);
     }
 

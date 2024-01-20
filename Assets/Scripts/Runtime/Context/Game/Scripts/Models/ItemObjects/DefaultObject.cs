@@ -1,6 +1,4 @@
-﻿using System;
-using Runtime.Context.Game.Scripts.Models.Bundle;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Models.ItemObjects
 {

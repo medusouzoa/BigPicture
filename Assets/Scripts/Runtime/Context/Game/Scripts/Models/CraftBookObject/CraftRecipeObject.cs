@@ -2,7 +2,7 @@
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using UnityEngine;
 
-namespace Runtime.Context.Game.Scripts.CraftBookObject
+namespace Runtime.Context.Game.Scripts.Models.CraftBookObject
 {
   [CreateAssetMenu(fileName = "CraftRecipe", menuName = "Craft System/CraftRecipe")]
   public class CraftRecipeObject : ScriptableObject

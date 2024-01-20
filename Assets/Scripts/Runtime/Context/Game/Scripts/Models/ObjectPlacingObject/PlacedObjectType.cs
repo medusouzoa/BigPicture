@@ -2,7 +2,7 @@
 using Runtime.Context.Game.Scripts.Vo;
 using UnityEngine;
 
-namespace Runtime.Context.Game.Scripts.ObjectPlacingObject
+namespace Runtime.Context.Game.Scripts.Models.ObjectPlacingObject
 {
   [CreateAssetMenu]
   public class PlacedObjectType : ScriptableObject
@@ -11,7 +11,6 @@ namespace Runtime.Context.Game.Scripts.ObjectPlacingObject
     public GameObject prefab;
     public int width;
     public int height;
-    public List<PlaceBuildObjectVo> placeBuildObjectVos;
     public int price;
 
     public int GetRotationAngle(Dir dir)

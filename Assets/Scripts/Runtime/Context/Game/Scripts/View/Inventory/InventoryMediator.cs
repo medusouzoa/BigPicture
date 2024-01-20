@@ -49,7 +49,6 @@ namespace Runtime.Context.Game.Scripts.View.Inventory
     private void OnClose()
     {
       Destroy(gameObject);
-      Debug.Log("Close action called");
     }
 
     public override void OnRemove()

@@ -2,7 +2,8 @@
 using Runtime.Context.Game.Scripts.Models.Bundle;
 using Runtime.Context.Game.Scripts.Models.CameraModel;
 using Runtime.Context.Game.Scripts.Models.Grid;
-using Runtime.Context.Game.Scripts.ObjectPlacingObject;
+using Runtime.Context.Game.Scripts.Models.ObjectPlacingObject;
+using Runtime.Context.Game.Scripts.Models.PlayerModel;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.mediation.impl;
 using TMPro;
@@ -41,7 +42,6 @@ namespace Runtime.Context.Game.Scripts.View.Market
 
     public override void OnRegister()
     {
-      //player.AddMoney(200);
       view.dispatcher.AddListener(MarketEvent.Close, OnClose);
       _itemButtons = new List<Button>();
       PopulateMarketButtons();
@@ -134,16 +134,14 @@ namespace Runtime.Context.Game.Scripts.View.Market
             {
               Debug.LogWarning("Player doesn't have enough money to buy the item.");
             }
-
-           
           }
         }
         else
         {
-          Debug.Log("Cannot build here! ");
+          Debug.LogWarning("Cannot build here! ");
         }
       }
-       
+
       if (Input.GetKeyDown(KeyCode.R))
       {
         _dir = PlacedObjectType.GetNextDir(_dir);

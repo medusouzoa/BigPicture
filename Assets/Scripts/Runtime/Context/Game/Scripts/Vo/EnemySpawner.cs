@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Runtime.Context.Game.Scripts.Vo
 {
@@ -71,8 +69,6 @@ namespace Runtime.Context.Game.Scripts.Vo
       {
         waveCountdown -= Time.deltaTime;
       }
-
-    
     }
 
     public void DestroyObj()
@@ -82,6 +78,7 @@ namespace Runtime.Context.Game.Scripts.Vo
         Destroy(gameObject);
       }
     }
+
     private IEnumerator SpawnWave(WaveVo wave)
     {
       state = SpawnState.Spawning;
@@ -112,7 +109,6 @@ namespace Runtime.Context.Game.Scripts.Vo
 
       GameObject newEnemy = Instantiate(zombie, randomSpawner.position, randomSpawner.rotation, transform);
       ZombieStats newEnemyStats = newEnemy.GetComponent<ZombieStats>();
-      //newEnemyStats.SetTarget(_playerTarget);
       if (Random.Range(0, 2) == 0)
       {
         newEnemyStats.SetTarget(_playerTarget);
@@ -124,7 +120,6 @@ namespace Runtime.Context.Game.Scripts.Vo
         _target = _houseTarget;
       }
 
-      //newEnemyStats.SetTarget(target);
       enemyList.Add(newEnemyStats);
       Debug.Log(randomInt);
     }

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Runtime.Context.Game.Scripts.ObjectPlacingObject;
+using Runtime.Context.Game.Scripts.Models.ObjectPlacingObject;
 using strange.extensions.mediation.impl;
 using UnityEngine;
 using UnityEngine.UI;

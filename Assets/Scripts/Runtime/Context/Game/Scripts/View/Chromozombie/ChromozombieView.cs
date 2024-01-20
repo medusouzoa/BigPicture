@@ -6,6 +6,7 @@ namespace Runtime.Context.Game.Scripts.View.Chromozombie
   public class ChromozombieView : EventView
   {
     public LayerMask zombieLayer;
+
     public void OnWeaponMenuOpen()
     {
       dispatcher.Dispatch(ZombieEvent.Menu);

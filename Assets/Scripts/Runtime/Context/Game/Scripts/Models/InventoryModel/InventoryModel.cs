@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Runtime.Context.Game.Scripts.Models.ItemObjects;
 using Runtime.Context.Game.Scripts.Vo.SimpleJSON;
@@ -58,7 +57,6 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
       AddItemToDatabase(swordObject);
     }
 
-    // Add an item to the database
     public void AddItemToDatabase(ItemObject item)
     {
       if (!itemDictionary.ContainsKey(item.itemName))
@@ -71,7 +69,6 @@ namespace Runtime.Context.Game.Scripts.Models.InventoryModel
       }
     }
 
-    // Find an item by itemName
     public ItemObject GetItemByName(string itemName)
     {
       if (itemDictionary.TryGetValue(itemName, out ItemObject item))

@@ -76,7 +76,6 @@ namespace Runtime.Context.Game.Scripts.View.Player
         if (path != null)
         {
           StartCoroutine(MovePlayerAlongPath(path));
-          Debug.Log("PathCount: " + path.Count);
           for (int i = 0; i < path.Count - 1; i++)
           {
             Debug.DrawLine(new Vector3(path[i].x, 0, path[i].z) * 10f + Vector3.one * 5f, new Vector3(path[i + 1].x, 0, path[i + 1].z) * 10f + Vector3.one * 5f, Color.green, 1f);

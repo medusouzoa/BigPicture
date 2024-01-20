@@ -1,14 +1,17 @@
-public class PlayerModel :IPlayerModel
+namespace Runtime.Context.Game.Scripts.Models.PlayerModel
 {
-  public int money { get; set; }
-
-  public void AddMoney(int amount)
+  public class PlayerModel : IPlayerModel
   {
-    money += amount;
-  }
+    public int money { get; set; }
 
-  public void SubtractMoney(int amount)
-  {
-    money -= amount;
+    public void AddMoney(int amount)
+    {
+      money += amount;
+    }
+
+    public void SubtractMoney(int amount)
+    {
+      money -= amount;
+    }
   }
 }

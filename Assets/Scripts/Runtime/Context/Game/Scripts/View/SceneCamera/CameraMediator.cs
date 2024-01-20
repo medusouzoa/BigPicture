@@ -2,7 +2,7 @@
 using strange.extensions.mediation.impl;
 using UnityEngine;
 
-namespace Runtime.Context.Game.Scripts.View.SceneCameras
+namespace Runtime.Context.Game.Scripts.View.SceneCamera
 {
   public class CameraMediator : Mediator
   {

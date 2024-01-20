@@ -1,7 +1,7 @@
-﻿using System;
-using Runtime.Context.Game.Scripts.Enum;
+﻿using Runtime.Context.Game.Scripts.Enum;
 using Runtime.Context.Game.Scripts.Models.LayerModel;
 using Runtime.Context.Game.Scripts.Models.Panel;
+using Runtime.Context.Game.Scripts.Models.PlayerModel;
 using strange.extensions.mediation.impl;
 using UnityEngine;
 
@@ -15,7 +15,6 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
     Inventory,
     Settings,
     Close,
-    MoneyUpdate
   }
 
   public class MainHudMediator : EventMediator
@@ -40,7 +39,6 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
       view.dispatcher.AddListener(MainHudEvent.Settings, OnSettingsOpen);
       view.dispatcher.AddListener(MainHudEvent.Close, OnClose);
       view.UpdateValue(playerModel.money);
-      // view.dispatcher.AddListener(MainHudEvent.MoneyUpdate, MoneyUpdate);
     }
 
     private void Update()
@@ -75,7 +73,6 @@ namespace Runtime.Context.Game.Scripts.View.MainHud
     private void OnClose()
     {
       Destroy(gameObject);
-      Debug.Log("Close action called");
     }
   }
 }

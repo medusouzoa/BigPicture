@@ -97,7 +97,7 @@ namespace Runtime.Context.Game.Scripts.View.Craft
       }
       else
       {
-        Debug.Log("There are missing objects to craft");
+        Debug.LogError("There are missing objects to craft");
       }
     }
 

@@ -7,7 +7,7 @@ namespace Runtime.Context.Game.Scripts.View.CraftRow
   public class CraftRowView : EventView
   {
     public InventoryObject inventory;
-    public CraftBookObject.CraftBookObject craftBook;
+    public Models.CraftBookObject.CraftBookObject craftBook;
 
     public Action OnCraftItem1Action;
     public Action OnCraftItem2Action;

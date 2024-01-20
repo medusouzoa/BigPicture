@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using RSG;
 using Runtime.Context.Game.Scripts.Models.Bundle;
-//using Runtime.Context.Game.Scripts.View.Grid;
 using Runtime.Context.Game.Scripts.Vo;
 using strange.extensions.mediation.impl;
 using UnityEngine;
@@ -15,7 +14,6 @@ namespace Runtime.Context.Game.Scripts.View.GridManager
     {
       List<Func<IPromise>> promises = new();
 
-      // Fill promises with functions that instantiate grids
     
       for (int i = 0; i < gridData.Count; i++)
       {
@@ -27,7 +25,6 @@ namespace Runtime.Context.Game.Scripts.View.GridManager
         }
       }
 
-      // Debug.LogWarning("PromiseAllBefore>");
 
       Promise.Sequence(promises)
         .Then(() => Debug.Log("All grids created"))

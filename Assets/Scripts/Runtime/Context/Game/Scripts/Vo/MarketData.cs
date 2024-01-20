@@ -1,5 +1,5 @@
 ﻿using System;
-using Runtime.Context.Game.Scripts.ObjectPlacingObject;
+using Runtime.Context.Game.Scripts.Models.ObjectPlacingObject;
 using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Vo

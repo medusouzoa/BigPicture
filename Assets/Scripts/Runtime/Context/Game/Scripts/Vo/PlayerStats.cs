@@ -1,9 +1,4 @@
-﻿using System;
-using Runtime.Context.Game.Scripts.Enum;
-using Runtime.Context.Game.Scripts.Models.LayerModel;
-using Runtime.Context.Game.Scripts.Models.Panel;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 namespace Runtime.Context.Game.Scripts.Vo
 {
@@ -13,7 +8,6 @@ namespace Runtime.Context.Game.Scripts.Vo
     public int maxHealth;
     public bool isDead;
     public EnemySpawner enemySpawner;
-    //public UnityEvent OnPlayerDeath;
     public GameManager gm;
   
     private void Start()
