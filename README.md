@@ -1,16 +1,15 @@
 # Big Picture: A Post-Apocalyptic Survival Game
 Table of Contents
-Introduction
-Installation
-Dependencies
-Gameplay
-Features
-Controls
-Development
-Testing
-Known Issues
-Contributing
-License
+- Introduction
+- Installation
+- Dependencies
+- Gameplay
+- Features
+- Controls
+- Development
+- Testing
+- Known Issues
+- Contributing
 
 # Introduction
 Big Picture is a single-player post-apocalyptic survival game. You play as a man who lost his wife in a Chromozombie attack, and your primary objective is to survive and protect the house you built together. Navigate through the game world, collect resources, craft weapons, and defend your home from Chromozombies. Immerse yourself in a captivating story and enjoy a rich gaming experience.
